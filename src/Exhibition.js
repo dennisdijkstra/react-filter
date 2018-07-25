@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Exhibition extends Component {
-    static propTypes = {
-        exhibition: PropTypes.shape({
-            title: PropTypes.string.isRequired,
-        }).isRequired,
-    };
+const Exhibition = (props) => {
+    const { exhibition } = props;
 
-    render() {
-        const { exhibition } = this.props;
-        return (
-            <div>
-                <h1>{exhibition.title}</h1>
-            </div>
-        );
-    }
-}
+    return (
+        <div>
+            <h1>{exhibition.title}</h1>
+        </div>
+    );
+};
+
+export default Exhibition;
+
+Exhibition.propTypes = {
+    exhibition: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+    }).isRequired,
+};
