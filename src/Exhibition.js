@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Exhibition = (props) => {
-    const { exhibition } = props;
-
-    return (
-        <div>
-            <h1>{exhibition.title}</h1>
-        </div>
-    );
-};
+const Exhibition = ({ exhibition }) => (
+    <div>
+        <h1>{exhibition.title}</h1>
+    </div>
+);
 
 export default Exhibition;
 
