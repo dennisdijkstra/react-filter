@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import './sass/app.css';
 import 'babel-polyfill';
-import Exhibition from './Exhibition';
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+} from 'react-router-dom';
+import ExhibitionList from './ExhibitionList';
+import ExhibitionDetail from './ExhibitionDetail';
 
 
 class App extends Component {
     state = {
-        exhibitions: [],
+        exhibitionObjects: [],
     }
 
     async componentDidMount() {
@@ -14,7 +20,7 @@ class App extends Component {
             this.res = await fetch('https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getList&access_token=dbb5dbb3ac11def3ddd372de708e9893');
             const results = await this.res.json();
             this.setState({
-                exhibitions: results.exhibitions,
+                exhibitionObjects: results.exhibitions,
             });
         } catch (e) {
             console.log(e);
@@ -22,11 +28,16 @@ class App extends Component {
     }
 
     render() {
-        const { exhibitions } = this.state;
+        const { exhibitionObjects } = this.state;
         return (
-            <div className="App">
-                {exhibitions.map(exhibition => <Exhibition key={exhibition.id} exhibition={exhibition} />)}
-            </div>
+            <Router>
+                <div className="App">
+                    <Switch>
+                        <Route exact path="/" render={props => <ExhibitionList {...props} exhibitionObjects={exhibitionObjects} />} />
+                        <Route path="/:id" component={ExhibitionDetail} />
+                    </Switch>
+                </div>
+            </Router>
         );
     }
 }
