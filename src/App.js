@@ -7,6 +7,7 @@ import {
     Switch,
 } from 'react-router-dom';
 import ExhibitionList from './ExhibitionList';
+import ExhibitionDetail from './ExhibitionDetail';
 
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
                 <div className="App">
                     <Switch>
                         <Route exact path="/" render={props => <ExhibitionList {...props} exhibitionObjects={exhibitionObjects} />} />
+                        <Route path="/:id" component={ExhibitionDetail} />
                     </Switch>
                 </div>
             </Router>
