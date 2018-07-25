@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const Exhibition = ({ exhibition }) => (
-    <div>
-        <h1>{exhibition.title}</h1>
-    </div>
-);
+const Exhibition = ({ exhibition }) => {
+    const { title, id } = exhibition;
+
+    return (
+        <div>
+            <Link to={id}>
+                <p>{title}</p>
+            </Link>
+        </div>
+    );
+};
 
 export default Exhibition;
 
