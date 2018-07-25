@@ -9,7 +9,7 @@ const Exhibition = ({ exhibition }) => {
     return (
         <div>
             <Link to={id}>
-                <p>{title}</p>
+                <p className="exhibition-name">{title}</p>
             </Link>
         </div>
     );
