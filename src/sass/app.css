@@ -898,6 +898,11 @@ a {
     color: #f00;
     transition: color .5s; }
 
+.exhibition-image {
+  height: 300px;
+  width: 200px;
+  object-fit: cover; }
+
 .exhibition-detail-title {
   margin-bottom: 20px;
   font-size: 30px; }

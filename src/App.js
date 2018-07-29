@@ -17,7 +17,7 @@ class App extends Component {
 
     async componentDidMount() {
         try {
-            this.res = await fetch('https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=dbb5dbb3ac11def3ddd372de708e9893&medium=photography&page=1&per_page=100');
+            this.res = await fetch('https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=dbb5dbb3ac11def3ddd372de708e9893&medium=digital&has_images=1&per_page=50');
             const results = await this.res.json();
             console.log(results.objects);
             this.setState({
