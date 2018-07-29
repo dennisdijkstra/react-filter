@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 
 
 const Exhibition = ({ exhibition }) => {
-    const { title, id } = exhibition;
+    const { title, images, id } = exhibition;
 
     return (
         <div>
             <Link to={id}>
-                <p className="exhibition-name">{title}</p>
+                <h1>{title}</h1>
+                <img src={images[0].b.url} className="exhibition-image" alt={title} />
             </Link>
         </div>
     );
