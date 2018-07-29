@@ -20,6 +20,6 @@ export default Exhibition;
 
 Exhibition.propTypes = {
     exhibition: PropTypes.shape({
-        title_raw: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
     }).isRequired,
 };
