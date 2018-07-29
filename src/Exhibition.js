@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 
 const Exhibition = ({ exhibition }) => {
-    const { title_raw, id } = exhibition;
+    const { title_raw: titleRaw, id } = exhibition;
 
     return (
         <div>
             <Link to={id}>
-                <p className="exhibition-name">{title_raw}</p>
+                <p className="exhibition-name">{titleRaw}</p>
             </Link>
         </div>
     );
