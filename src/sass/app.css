@@ -899,9 +899,10 @@ a {
     transition: color .5s; }
 
 .exhibition-image {
-  height: 300px;
   width: 200px;
-  object-fit: cover; }
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 24px; }
 
 .exhibition-detail-title {
   margin-bottom: 20px;
@@ -919,3 +920,8 @@ a {
 .exhibition-list-title {
   margin-bottom: 40px;
   font-size: 48px; }
+
+.exhibition-list-items {
+  display: grid;
+  grid-gap: 72px 24px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }

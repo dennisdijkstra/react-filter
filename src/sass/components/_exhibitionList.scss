@@ -3,4 +3,10 @@
         margin-bottom: 40px;
         font-size: 48px;
     }
+
+    &-items {
+        display: grid;
+        grid-gap: 72px 24px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
 }

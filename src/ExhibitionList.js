@@ -6,9 +6,11 @@ import Exhibition from './Exhibition';
 const ExhibitionList = ({ exhibitionObjects }) => (
     <div>
         <h1 className="exhibition-list-title">Cooper Hewitt Exhibitions</h1>
-        {exhibitionObjects.map(exhibition => (
-            <Exhibition key={exhibition.id} exhibition={exhibition} />
-        ))}
+        <div className="exhibition-list-items">
+            {exhibitionObjects.map(exhibition => (
+                <Exhibition key={exhibition.id} exhibition={exhibition} />
+            ))}
+        </div>
     </div>
 );
 
