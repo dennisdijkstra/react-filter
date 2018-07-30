@@ -890,15 +890,10 @@ a {
   font-size: 20px;
   font-weight: bold; }
 
-.exhibition-name {
-  width: 400px;
-  margin-bottom: 20px;
-  transition: color .5s; }
-  .exhibition-name:hover {
-    color: #f00;
-    transition: color .5s; }
+.exhibition-list-item-title {
+  font-size: 18px; }
 
-.exhibition-image {
+.exhibition-list-item-image {
   width: 200px;
   height: 300px;
   object-fit: cover;
