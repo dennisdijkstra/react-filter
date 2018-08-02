@@ -6,6 +6,7 @@ import Filters from './Filters';
 class ExhibitionList extends Component {
     state = {
         exhibitionObjects: [],
+        search: '',
     }
 
     async componentDidMount() {
@@ -20,12 +21,16 @@ class ExhibitionList extends Component {
         }
     }
 
-    updateList = () => {
-        console.log('Update list items');
+    updateList = (search) => {
+        this.setState({
+            search,
+        });
+        console.log(search);
     }
 
     render() {
-        const { exhibitionObjects } = this.state;
+        const { exhibitionObjects, search } = this.state;
+        const filteredExhibitionObjects = exhibitionObjects.filter(exhibition => exhibition.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
 
         return (
             <div>
@@ -33,9 +38,9 @@ class ExhibitionList extends Component {
                     <h1 className="exhibition-list-title">Cooper Hewitt Exhibitions</h1>
                 </div>
                 <div className="container">
-                    <Filters updateList={this.updateList} />
+                    <Filters updateList={this.updateList} search={search} />
                     <div className="exhibition-list-items">
-                        {exhibitionObjects.map(exhibition => (
+                        {filteredExhibitionObjects.map(exhibition => (
                             <Exhibition key={exhibition.id} exhibition={exhibition} />
                         ))}
                     </div>

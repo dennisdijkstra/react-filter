@@ -5,18 +5,22 @@ import PropTypes from 'prop-types';
 class Filters extends Component {
     static propTypes = {
         updateList: PropTypes.func.isRequired,
+        search: PropTypes.string.isRequired,
     };
 
-    filterList = () => {
+    filterList = (event) => {
         const { updateList } = this.props;
-        updateList();
+        const search = event.target.value;
+
+        updateList(search);
     }
 
     render() {
+        const { search } = this.props;
         return (
             <div className="filters">
                 <h2>Filters</h2>
-                <input type="text" onChange={this.filterList} />
+                <input type="text" onChange={this.filterList} value={search} />
             </div>
         );
     }
