@@ -885,23 +885,21 @@ a {
     --columnGap: 2rem; }
 
 .App {
-  margin: 30px;
   font-family: helvetica;
   font-size: 20px;
   font-weight: bold; }
 
-.exhibition-name {
-  width: 400px;
-  margin-bottom: 20px;
-  transition: color .5s; }
-  .exhibition-name:hover {
-    color: #f00;
-    transition: color .5s; }
+.container {
+  display: flex; }
 
-.exhibition-image {
+.exhibition-list-item-title {
+  font-size: 14px; }
+
+.exhibition-list-item-image {
+  width: 180px;
   height: 300px;
-  width: 200px;
-  object-fit: cover; }
+  object-fit: cover;
+  margin-bottom: 24px; }
 
 .exhibition-detail-title {
   margin-bottom: 20px;
@@ -919,3 +917,18 @@ a {
 .exhibition-list-title {
   margin-bottom: 40px;
   font-size: 48px; }
+
+.exhibition-list-items {
+  display: grid;
+  grid-gap: 72px 24px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  width: 100%;
+  padding: 15px; }
+
+.header {
+  padding: 15px; }
+
+.filters {
+  width: 200px;
+  padding: 15px;
+  border-right: 1px solid #000; }

@@ -3,4 +3,16 @@
         margin-bottom: 40px;
         font-size: 48px;
     }
+
+    &-items {
+        display: grid;
+        grid-gap: 72px 24px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+.header {
+    padding: 15px;
 }

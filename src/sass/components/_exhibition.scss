@@ -1,16 +1,12 @@
-.exhibition-name {
-    width: 400px;
-    margin-bottom: 20px;
-    transition: color .5s;
-
-    &:hover {
-        color: #f00;
-        transition: color .5s;
+.exhibition-list-item {
+    &-title {
+        font-size: 14px;
     }
-}
 
-.exhibition-image {
-    height: 300px;
-    width: 200px;
-    object-fit: cover;
+    &-image {
+        width: 180px;
+        height: 300px;
+        object-fit: cover;
+        margin-bottom: 24px;
+    }
 }

@@ -7,10 +7,10 @@ const Exhibition = ({ exhibition }) => {
     const { title, images, id } = exhibition;
 
     return (
-        <div>
+        <div className="exhibition-list-item">
             <Link to={id}>
-                <h1>{title}</h1>
-                <img src={images[0].b.url} className="exhibition-image" alt={title} />
+                <img src={images[0].b.url} className="exhibition-list-item-image" alt={title} />
+                <p className="exhibition-list-item-title">{title}</p>
             </Link>
         </div>
     );
