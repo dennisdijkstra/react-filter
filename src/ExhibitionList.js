@@ -34,12 +34,9 @@ class ExhibitionList extends Component {
 
         return (
             <div>
-                <div className="header">
-                    <h1 className="exhibition-list-title">Cooper Hewitt Digital Objects</h1>
-                </div>
                 <div className="container">
                     <Filters updateList={this.updateList} search={search} />
-                    <div className="exhibition-list-items">
+                    <div className="exhibition-list-items content">
                         {filteredExhibitionObjects.map(exhibition => (
                             <Exhibition key={exhibition.id} exhibition={exhibition} />
                         ))}

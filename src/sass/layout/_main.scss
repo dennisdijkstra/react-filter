@@ -1,4 +1,4 @@
-.App {
+.app {
     font-family: helvetica;
     font-size: 20px;
     font-weight: bold;
@@ -6,4 +6,16 @@
 
 .container {
     display: flex;
+}
+
+.content {
+    padding: 30px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }

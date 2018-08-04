@@ -19,7 +19,9 @@ class Filters extends Component {
         const { search } = this.props;
         return (
             <div className="filters">
-                <h2>Filters</h2>
+
+                <h2 className="filters-title">Filters</h2>
+                <p className="filters-input-title">Search:</p>
                 <input type="text" onChange={this.filterList} value={search} />
             </div>
         );

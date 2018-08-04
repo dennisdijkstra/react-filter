@@ -1,7 +1,6 @@
 .exhibition-list {
     &-title {
-        margin-bottom: 40px;
-        font-size: 48px;
+        font-size: 24px;
     }
 
     &-items {
@@ -9,10 +8,6 @@
         grid-gap: 72px 24px;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         width: 100%;
-        padding: 15px;
+        background-color: #f0ffff;
     }
-}
-
-.header {
-    padding: 15px;
 }
