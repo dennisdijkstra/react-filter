@@ -11,7 +11,7 @@ class ExhibitionList extends Component {
 
     async componentDidMount() {
         try {
-            this.res = await fetch('https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=dbb5dbb3ac11def3ddd372de708e9893&medium=digital&has_images=1&per_page=100');
+            this.res = await fetch('https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=dbb5dbb3ac11def3ddd372de708e9893&query=typography&year_acquired=gt1980&has_images=1&per_page=200');
             const results = await this.res.json();
             this.setState({
                 exhibitionObjects: results.objects.filter(result => result.images[0]),

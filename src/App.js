@@ -14,7 +14,7 @@ const App = () => (
     <Router>
         <div className="app">
             <div className="header">
-                <h1 className="exhibition-list-title">Cooper Hewitt Digital Objects</h1>
+                <h1 className="exhibition-list-title">Cooper Hewitt Typography Objects</h1>
             </div>
             <Switch>
                 <Route exact path="/" render={props => <ExhibitionList {...props} />} />
