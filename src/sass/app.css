@@ -942,17 +942,19 @@ a {
   width: 100%;
   background-color: #f0ffff; }
 
-.filters {
+.filter {
   width: 200px;
   min-height: 100vh;
   padding: 30px;
   color: #fff;
   background-color: #000; }
-  .filters-title {
+  .filter-input {
+    margin-bottom: 24px; }
+  .filter-title {
     margin-bottom: 24px;
     font-size: 16px;
     font-weight: 400; }
-  .filters-input-title {
+  .filter-input-title {
     margin-bottom: 6px;
     font-size: 12px;
     font-weight: 100; }

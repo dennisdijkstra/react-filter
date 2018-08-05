@@ -1,9 +1,13 @@
-.filters {
+.filter {
     width: 200px;
     min-height: 100vh;
     padding: 30px;
     color: #fff;
     background-color: #000;
+
+    &-input {
+        margin-bottom: 24px;
+    }
 
     &-title {
         margin-bottom: 24px;
