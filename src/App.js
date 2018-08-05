@@ -12,7 +12,10 @@ import ExhibitionDetail from './ExhibitionDetail';
 
 const App = () => (
     <Router>
-        <div className="App">
+        <div className="app">
+            <div className="header">
+                <h1 className="exhibition-list-title">Cooper Hewitt Typography Objects</h1>
+            </div>
             <Switch>
                 <Route exact path="/" render={props => <ExhibitionList {...props} />} />
                 <Route path="/:id" component={ExhibitionDetail} />

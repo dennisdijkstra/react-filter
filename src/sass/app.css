@@ -884,7 +884,7 @@ a {
   .columns.is-variable.is-8 {
     --columnGap: 2rem; }
 
-.App {
+.app {
   font-family: helvetica;
   font-size: 20px;
   font-weight: bold; }
@@ -892,43 +892,69 @@ a {
 .container {
   display: flex; }
 
-.exhibition-list-item-title {
-  font-size: 14px; }
+.content {
+  padding: 30px; }
 
-.exhibition-list-item-image {
-  width: 180px;
-  height: 300px;
-  object-fit: cover;
-  margin-bottom: 24px; }
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3); }
+
+.exhibition-list-item {
+  position: relative;
+  padding: 20px;
+  background-color: #fff; }
+  .exhibition-list-item-title {
+    font-size: 14px; }
+  .exhibition-list-item-image {
+    width: 100%;
+    height: 300px;
+    object-fit: none;
+    margin-bottom: 24px; }
 
 .exhibition-detail-title {
   margin-bottom: 20px;
   font-size: 30px; }
 
 .exhibition-detail-text {
+  font-size: 14px;
   font-weight: normal;
   line-height: 1.3; }
 
+.exhibition-detail-image {
+  max-width: 300px;
+  margin-bottom: 20px; }
+
 .exhibition-detail-back {
   margin-bottom: 20px;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: normal; }
 
 .exhibition-list-title {
-  margin-bottom: 40px;
-  font-size: 48px; }
+  font-size: 24px; }
 
 .exhibition-list-items {
   display: grid;
   grid-gap: 72px 24px;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   width: 100%;
-  padding: 15px; }
+  background-color: #f0ffff; }
 
-.header {
-  padding: 15px; }
-
-.filters {
+.filter {
   width: 200px;
-  padding: 15px;
-  border-right: 1px solid #000; }
+  min-height: 100vh;
+  padding: 30px;
+  color: #fff;
+  background-color: #000; }
+  .filter-input {
+    margin-bottom: 24px; }
+  .filter-title {
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 400; }
+  .filter-input-title {
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 100; }

@@ -4,23 +4,35 @@ import PropTypes from 'prop-types';
 
 class Filters extends Component {
     static propTypes = {
-        updateList: PropTypes.func.isRequired,
+        updateSearchValue: PropTypes.func.isRequired,
         search: PropTypes.string.isRequired,
+        types: PropTypes.arrayOf(PropTypes.string).isRequired,
     };
 
-    filterList = (event) => {
-        const { updateList } = this.props;
+    getSearchValue = (event) => {
+        const { updateSearchValue } = this.props;
         const search = event.target.value;
 
-        updateList(search);
+        updateSearchValue(search);
     }
 
     render() {
-        const { search } = this.props;
+        const { search, types } = this.props;
         return (
-            <div className="filters">
-                <h2>Filters</h2>
-                <input type="text" onChange={this.filterList} value={search} />
+            <div className="filter">
+                <h2 className="filter-title">Filters</h2>
+                <div className="filter-input">
+                    <p className="filter-input-title">Search:</p>
+                    <input type="text" onChange={this.getSearchValue} value={search} />
+                </div>
+                <div className="filter-input">
+                    <p className="filter-input-title">Type of object:</p>
+                    <select name="type">
+                        {types.map(type => (
+                            <option value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
         );
     }
