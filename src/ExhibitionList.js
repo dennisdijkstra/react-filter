@@ -4,9 +4,17 @@ import Filters from './Filters';
 
 
 class ExhibitionList extends Component {
-    state = {
-        exhibitionObjects: [],
-        search: '',
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            exhibitionObjects: [],
+            search: '',
+        };
+
+        const { exhibitionObjects, search } = this.state;
+        this.exhibitionObjects = exhibitionObjects;
+        this.search = search;
     }
 
     async componentDidMount() {
@@ -21,21 +29,26 @@ class ExhibitionList extends Component {
         }
     }
 
-    updateList = (search) => {
+    updateSearchValue = (search) => {
         this.setState({
             search,
         });
-        console.log(search);
+    }
+
+    filterTitles = () => {
+        const { exhibitionObjects, search } = this.state;
+
+        return exhibitionObjects.filter(object => object.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
     }
 
     render() {
-        const { exhibitionObjects, search } = this.state;
-        const filteredExhibitionObjects = exhibitionObjects.filter(exhibition => exhibition.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
+        const { search } = this.state;
+        const filteredExhibitionObjects = this.filterTitles();
 
         return (
             <div>
                 <div className="container">
-                    <Filters updateList={this.updateList} search={search} />
+                    <Filters updateSearchValue={this.updateSearchValue} search={search} />
                     <div className="exhibition-list-items content">
                         {filteredExhibitionObjects.map(exhibition => (
                             <Exhibition key={exhibition.id} exhibition={exhibition} />
