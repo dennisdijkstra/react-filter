@@ -4,38 +4,34 @@ import PropTypes from 'prop-types';
 
 class Filters extends Component {
     static propTypes = {
-        updateSearchValue: PropTypes.func.isRequired,
-        updateSelectValue: PropTypes.func.isRequired,
+        updateStateValues: PropTypes.func.isRequired,
         search: PropTypes.string.isRequired,
+        select: PropTypes.string.isRequired,
         types: PropTypes.arrayOf(PropTypes.string).isRequired,
     };
 
-    getSearchInput = (event) => {
-        const { updateSearchValue } = this.props;
-        const input = event.target.value;
+    getInput = () => {
+        const { updateStateValues } = this.props;
+        const search = this.search.value;
+        const select = this.select.value;
 
-        updateSearchValue(input);
-    }
-
-    getSelectInput = (event) => {
-        const { updateSelectValue } = this.props;
-        const input = event.target.value;
-
-        updateSelectValue(input);
+        updateStateValues(search, select);
     }
 
     render() {
-        const { search, types } = this.props;
+        const { search, select, types } = this.props;
+
         return (
             <div className="filter">
                 <h2 className="filter-title">Filters</h2>
                 <div className="filter-input">
                     <p className="filter-input-title">Search:</p>
-                    <input type="text" onChange={this.getSearchInput} value={search} />
+                    <input type="text" onChange={this.getInput} value={search} ref={(input => this.search = input)} />
                 </div>
                 <div className="filter-input">
                     <p className="filter-input-title">Type of object:</p>
-                    <select name="type" onChange={this.getSelectInput}>
+                    <select name="type" onChange={this.getInput} value={select} ref={(input => this.select = input)}>
+                        <option value="all">All</option>
                         {types.map(type => (
                             <option value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
                         ))}

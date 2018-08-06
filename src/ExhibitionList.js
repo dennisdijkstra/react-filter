@@ -12,6 +12,7 @@ class ExhibitionList extends Component {
             filtered: [],
             types: [],
             search: '',
+            select: 'all',
         };
     }
 
@@ -19,7 +20,7 @@ class ExhibitionList extends Component {
         this.fetchData();
     }
 
-    getTypes = () => {
+    setTypes = () => {
         const { filtered } = this.state;
         const array = [];
 
@@ -34,36 +35,31 @@ class ExhibitionList extends Component {
         });
     }
 
-    filterTitles = (value = '') => {
+    initialFilter = () => {
+        const { search, select } = this.state;
+        const searchInput = search.toLowerCase();
+        const selectInput = select.toLowerCase();
+
+        this.filter(searchInput, selectInput);
+    }
+
+    filter = (search, select) => {
         const { exhibitionObjects } = this.state;
-        const searchInput = value.toLowerCase();
-        const array = exhibitionObjects.filter(object => object.title.toLowerCase().indexOf(searchInput) !== -1);
+        const searchFiltered = exhibitionObjects.filter(object => object.title.toLowerCase().indexOf(search) !== -1);
+        const searchAndSelectFiltered = select === 'all' ? searchFiltered : searchFiltered.filter(object => object.type.toLowerCase() === selectInput);
 
         this.setState({
-            filtered: array,
+            filtered: searchAndSelectFiltered,
         });
 
-        this.getTypes();
+        this.setTypes();
     }
 
-    filterSelect = (value) => {
-        const { exhibitionObjects } = this.state;
-        const selectInput = value.toLowerCase();
-        const array = exhibitionObjects.filter(object => object.type.toLowerCase() === selectInput);
-
+    updateStateValues = (search, select) => {
         this.setState({
-            filtered: array,
-        });
-    }
-
-    updateSearchValue = (value) => {
-        this.setState({
-            search: value,
-        }, this.filterTitles(value));
-    }
-
-    updateSelectValue = (value) => {
-        this.filterSelect(value);
+            search,
+            select,
+        }, this.filter(search, select));
     }
 
     async fetchData() {
@@ -74,20 +70,24 @@ class ExhibitionList extends Component {
                 exhibitionObjects: results.objects.filter(result => result.images[0]),
             });
 
-            this.filterTitles();
-            this.getTypes();
+            await this.initialFilter();
         } catch (e) {
             console.log(e);
         }
     }
 
     render() {
-        const { search, filtered, types } = this.state;
+        const {
+            search,
+            select,
+            filtered,
+            types,
+        } = this.state;
 
         return (
             <div>
                 <div className="container">
-                    <Filters updateSearchValue={this.updateSearchValue} updateSelectValue={this.updateSelectValue} search={search} types={types} />
+                    <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
                     <div className="exhibition-list-items content">
                         {filtered.map(exhibition => (
                             <Exhibition key={exhibition.id} exhibition={exhibition} />
