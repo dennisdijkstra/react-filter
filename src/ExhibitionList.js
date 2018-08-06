@@ -20,11 +20,10 @@ class ExhibitionList extends Component {
         this.fetchData();
     }
 
-    setTypes = () => {
-        const { filtered } = this.state;
+    setTypes = (data) => {
         const array = [];
 
-        filtered.forEach((object) => {
+        data.forEach((object) => {
             if (!array.includes(object.type)) {
                 array.push(object.type);
             }
@@ -46,13 +45,11 @@ class ExhibitionList extends Component {
     filter = (search, select) => {
         const { exhibitionObjects } = this.state;
         const searchFiltered = exhibitionObjects.filter(object => object.title.toLowerCase().indexOf(search) !== -1);
-        const searchAndSelectFiltered = select === 'all' ? searchFiltered : searchFiltered.filter(object => object.type.toLowerCase() === selectInput);
+        const searchAndSelectFiltered = select === 'all' ? searchFiltered : searchFiltered.filter(object => object.type.toLowerCase() === select);
 
         this.setState({
             filtered: searchAndSelectFiltered,
-        });
-
-        this.setTypes();
+        }, this.setTypes(searchAndSelectFiltered));
     }
 
     updateStateValues = (search, select) => {
