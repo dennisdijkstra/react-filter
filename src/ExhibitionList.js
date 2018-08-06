@@ -9,56 +9,84 @@ class ExhibitionList extends Component {
 
         this.state = {
             exhibitionObjects: [],
+            filtered: [],
+            types: [],
             search: '',
+            select: 'all',
         };
-
-        this.types = [];
     }
 
-    async componentDidMount() {
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    setTypes = (data) => {
+        const array = [];
+
+        data.forEach((object) => {
+            if (!array.includes(object.type)) {
+                array.push(object.type);
+            }
+        });
+
+        this.setState({
+            types: array,
+        });
+    }
+
+    initialFilter = () => {
+        const { search, select } = this.state;
+        const searchInput = search.toLowerCase();
+        const selectInput = select.toLowerCase();
+
+        this.filter(searchInput, selectInput);
+    }
+
+    filter = (search, select) => {
+        const { exhibitionObjects } = this.state;
+        const searchFiltered = exhibitionObjects.filter(object => object.title.toLowerCase().indexOf(search) !== -1);
+        const searchAndSelectFiltered = select === 'all' ? searchFiltered : searchFiltered.filter(object => object.type.toLowerCase() === select);
+
+        this.setState({
+            filtered: searchAndSelectFiltered,
+        }, this.setTypes(searchAndSelectFiltered));
+    }
+
+    updateStateValues = (search, select) => {
+        this.setState({
+            search,
+            select,
+        }, this.filter(search, select));
+    }
+
+    async fetchData() {
         try {
-            this.res = await fetch('https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=dbb5dbb3ac11def3ddd372de708e9893&query=typography&year_acquired=gt1980&has_images=1&per_page=100');
+            this.res = await fetch('https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=491c2e66a84e1faf2e7e906ff6f24579&query=typography&year_acquired=gt1980&has_images=1&per_page=100');
             const results = await this.res.json();
             this.setState({
                 exhibitionObjects: results.objects.filter(result => result.images[0]),
             });
+
+            await this.initialFilter();
         } catch (e) {
             console.log(e);
         }
     }
 
-    getTypes = (items) => {
-        items.map((object) => {
-            if (!this.types.includes(object.type)) {
-                this.types.push(object.type);
-            }
-            return null;
-        });
-    }
-
-    filterTitles = () => {
-        const { exhibitionObjects, search } = this.state;
-
-        return exhibitionObjects.filter(object => object.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
-    }
-
-    updateSearchValue = (search) => {
-        this.setState({
-            search,
-        });
-    }
-
     render() {
-        const { search } = this.state;
-        const filteredExhibitionObjects = this.filterTitles();
-        this.getTypes(filteredExhibitionObjects);
+        const {
+            search,
+            select,
+            filtered,
+            types,
+        } = this.state;
 
         return (
             <div>
                 <div className="container">
-                    <Filters updateSearchValue={this.updateSearchValue} search={search} types={this.types} />
+                    <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
                     <div className="exhibition-list-items content">
-                        {filteredExhibitionObjects.map(exhibition => (
+                        {filtered.map(exhibition => (
                             <Exhibition key={exhibition.id} exhibition={exhibition} />
                         ))}
                     </div>

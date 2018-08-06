@@ -27,6 +27,7 @@ module.exports = {
         "react/jsx-filename-extension": 0,
         "react/jsx-one-expression-per-line": 0,
         "function-paren-newline": 0,
+        "no-return-assign": 0,
         "indent": [
             "error", 4
         ],
