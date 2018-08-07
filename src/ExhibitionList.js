@@ -88,21 +88,19 @@ class ExhibitionList extends Component {
         } = this.state;
 
         return (
-            <div>
-                <div className="container">
-                    <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
-                    <div className="exhibition-list-items content">
-                        { fetching ? (
-                            <div className="spinner">
-                                <div className="bounce1" />
-                                <div className="bounce2" />
-                                <div className="bounce3" />
-                            </div>
-                        ) : (null) }
-                        {filtered.map(exhibition => (
-                            <Exhibition key={exhibition.id} exhibition={exhibition} />
-                        ))}
-                    </div>
+            <div className="container">
+                <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
+                <div className="exhibition-list-items content">
+                    { fetching ? (
+                        <div className="spinner">
+                            <div className="bounce1" />
+                            <div className="bounce2" />
+                            <div className="bounce3" />
+                        </div>
+                    ) : (null) }
+                    {filtered.map(exhibition => (
+                        <Exhibition key={exhibition.id} exhibition={exhibition} />
+                    ))}
                 </div>
             </div>
         );
