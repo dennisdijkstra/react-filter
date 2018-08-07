@@ -13,10 +13,14 @@ class ExhibitionList extends Component {
             types: [],
             search: '',
             select: 'all',
+            fetching: false,
         };
     }
 
     componentDidMount() {
+        this.setState({
+            fetching: true,
+        });
         this.fetchData();
     }
 
@@ -65,6 +69,7 @@ class ExhibitionList extends Component {
             const results = await this.res.json();
             this.setState({
                 exhibitionObjects: results.objects.filter(result => result.images[0]),
+                fetching: false,
             });
 
             await this.initialFilter();
@@ -79,6 +84,7 @@ class ExhibitionList extends Component {
             select,
             filtered,
             types,
+            fetching,
         } = this.state;
 
         return (
@@ -86,6 +92,7 @@ class ExhibitionList extends Component {
                 <div className="container">
                     <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
                     <div className="exhibition-list-items content">
+                        { fetching ? 'loading...' : null }
                         {filtered.map(exhibition => (
                             <Exhibition key={exhibition.id} exhibition={exhibition} />
                         ))}
