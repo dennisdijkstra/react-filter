@@ -92,7 +92,13 @@ class ExhibitionList extends Component {
                 <div className="container">
                     <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
                     <div className="exhibition-list-items content">
-                        { fetching ? 'loading...' : null }
+                        { fetching ? (
+                            <div className="spinner">
+                                <div className="bounce1" />
+                                <div className="bounce2" />
+                                <div className="bounce3" />
+                            </div>
+                        ) : (null) }
                         {filtered.map(exhibition => (
                             <Exhibition key={exhibition.id} exhibition={exhibition} />
                         ))}
