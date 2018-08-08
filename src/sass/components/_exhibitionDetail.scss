@@ -1,7 +1,8 @@
 .exhibition-detail {
     &-title {
-        margin-bottom: 20px;
-        font-size: 30px;
+        width: 50%;
+        margin-bottom: 24px;
+        font-size: 40px;
     }
 
     &-text {
@@ -12,12 +13,12 @@
 
     &-image {
         max-width: 300px;
-        margin-bottom: 20px;
+        margin-bottom: 24px;
     }
 
     &-back {
-        margin-bottom: 20px;
-        font-size: 12px;
+        margin-bottom: 24px;
+        font-size: 14px;
         font-weight: normal;
     }
 }

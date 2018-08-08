@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Exhibition from './Exhibition';
-import Filters from './Filters';
+import ExhibitionList from '../components/ExhibitionList';
+import Filters from '../components/Filters';
 
 
-class ExhibitionList extends Component {
+class ExhibitionListContainer extends Component {
     constructor(props) {
         super(props);
 
@@ -90,21 +90,10 @@ class ExhibitionList extends Component {
         return (
             <div className="container">
                 <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
-                <div className="exhibition-list-items content">
-                    { fetching ? (
-                        <div className="spinner">
-                            <div className="bounce1" />
-                            <div className="bounce2" />
-                            <div className="bounce3" />
-                        </div>
-                    ) : (null) }
-                    {filtered.map(exhibition => (
-                        <Exhibition key={exhibition.id} exhibition={exhibition} />
-                    ))}
-                </div>
+                <ExhibitionList fetching={fetching} filtered={filtered} />
             </div>
         );
     }
 }
 
-export default ExhibitionList;
+export default ExhibitionListContainer;
