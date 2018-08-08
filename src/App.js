@@ -7,7 +7,7 @@ import {
     Switch,
 } from 'react-router-dom';
 import ExhibitionListContainer from './containers/ExhibitionListContainer';
-import ExhibitionDetail from './components/ExhibitionDetail';
+import ExhibitionDetailContainer from './containers/ExhibitionDetailContainer';
 
 
 const App = () => (
@@ -18,7 +18,7 @@ const App = () => (
             </div>
             <Switch>
                 <Route exact path="/" render={props => <ExhibitionListContainer {...props} />} />
-                <Route path="/:id" component={ExhibitionDetail} />
+                <Route path="/:id" component={ExhibitionDetailContainer} />
             </Switch>
         </div>
     </Router>
