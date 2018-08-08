@@ -25,9 +25,11 @@ class ExhibitionDetailContainer extends Component {
         const { object } = this.state;
 
         return (
-            object ? (
-                <ExhibitionDetail object={object} />
-            ) : (null)
+            <div className="container">
+                {object ? (
+                    <ExhibitionDetail object={object} />
+                ) : (null) }
+            </div>
         );
     }
 }

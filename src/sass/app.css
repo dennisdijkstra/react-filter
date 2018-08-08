@@ -920,6 +920,12 @@ a {
   .columns.is-variable.is-8 {
     --columnGap: 2rem; }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px; }
+
 .app {
   display: flex;
   flex-direction: column;
@@ -933,14 +939,8 @@ a {
   flex: 1; }
 
 .content {
-  padding: 30px; }
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3); }
+  padding: 30px;
+  background-color: #f0ffff; }
 
 .exhibition-list-item {
   position: relative;
@@ -955,8 +955,9 @@ a {
     margin-bottom: 24px; }
 
 .exhibition-detail-title {
-  margin-bottom: 20px;
-  font-size: 30px; }
+  width: 50%;
+  margin-bottom: 24px;
+  font-size: 40px; }
 
 .exhibition-detail-text {
   font-size: 14px;
@@ -965,11 +966,11 @@ a {
 
 .exhibition-detail-image {
   max-width: 300px;
-  margin-bottom: 20px; }
+  margin-bottom: 24px; }
 
 .exhibition-detail-back {
-  margin-bottom: 20px;
-  font-size: 12px;
+  margin-bottom: 24px;
+  font-size: 14px;
   font-weight: normal; }
 
 .exhibition-list-title {
@@ -979,8 +980,7 @@ a {
   display: grid;
   grid-gap: 72px 24px;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  width: 100%;
-  background-color: #f0ffff; }
+  width: 100%; }
 
 .filter {
   width: 200px;
