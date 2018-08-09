@@ -939,8 +939,15 @@ a {
   flex: 1; }
 
 .content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
   padding: 30px;
   background-color: #f0ffff; }
+
+button:focus {
+  outline: none; }
 
 .exhibition-list-item {
   position: relative;
@@ -981,6 +988,16 @@ a {
   grid-gap: 72px 24px;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   width: 100%; }
+
+.exhibition-list-load-more {
+  display: block;
+  width: 150px;
+  padding: 10px;
+  margin: 48px auto 24px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #fff;
+  border: none; }
 
 .filter {
   width: 200px;

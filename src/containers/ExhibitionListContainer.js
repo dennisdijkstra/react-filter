@@ -14,7 +14,11 @@ class ExhibitionListContainer extends Component {
             search: '',
             select: 'all',
             fetching: false,
+            initialLoad: true,
         };
+
+        this.results = {};
+        this.page = 1;
     }
 
     componentDidMount() {
@@ -63,15 +67,35 @@ class ExhibitionListContainer extends Component {
         }, this.filter(search, select));
     }
 
+    loadMoreItems = () => {
+        this.page = this.page + 1;
+        this.fetchData();
+    }
+
+    handleDataLoad = (data) => {
+        const { initialLoad } = this.state;
+
+        if (initialLoad) {
+            this.setState({
+                exhibitionObjects: data.objects.filter(result => result.images[0]),
+                fetching: false,
+                initialLoad: false,
+            });
+        } else {
+            this.setState((prevState) => {
+                console.log(prevState);
+
+                return { exhibitionObjects: [...prevState.exhibitionObjects, ...data.objects] };
+            });
+        }
+    }
+
     async fetchData() {
         try {
-            this.res = await fetch('https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=491c2e66a84e1faf2e7e906ff6f24579&query=typography&year_acquired=gt1980&has_images=1&per_page=100');
-            const results = await this.res.json();
-            this.setState({
-                exhibitionObjects: results.objects.filter(result => result.images[0]),
-                fetching: false,
-            });
+            this.res = await fetch(`https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=491c2e66a84e1faf2e7e906ff6f24579&query=typography&year_acquired=gt1980&has_images=1&per_page=30&page=${this.page}`);
+            this.results = await this.res.json();
 
+            this.handleDataLoad(this.results);
             await this.initialFilter();
         } catch (e) {
             console.log(e);
@@ -90,7 +114,7 @@ class ExhibitionListContainer extends Component {
         return (
             <div className="container">
                 <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
-                <ExhibitionList fetching={fetching} filtered={filtered} />
+                <ExhibitionList fetching={fetching} filtered={filtered} loadMoreItems={this.loadMoreItems} />
             </div>
         );
     }
