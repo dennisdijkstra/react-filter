@@ -14,6 +14,7 @@ class ExhibitionListContainer extends Component {
             search: '',
             select: 'all',
             fetching: false,
+            initialLoad: true,
         };
 
         this.results = {};
@@ -67,18 +68,34 @@ class ExhibitionListContainer extends Component {
     }
 
     loadMoreItems = () => {
-        console.log(this.results);
+        this.page = this.page + 1;
+        this.fetchData();
+    }
+
+    handleDataLoad = (data) => {
+        const { initialLoad } = this.state;
+
+        if (initialLoad) {
+            this.setState({
+                exhibitionObjects: data.objects.filter(result => result.images[0]),
+                fetching: false,
+                initialLoad: false,
+            });
+        } else {
+            this.setState((prevState) => {
+                console.log(prevState);
+
+                return { exhibitionObjects: [...prevState.exhibitionObjects, ...data.objects] };
+            });
+        }
     }
 
     async fetchData() {
         try {
             this.res = await fetch(`https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=491c2e66a84e1faf2e7e906ff6f24579&query=typography&year_acquired=gt1980&has_images=1&per_page=30&page=${this.page}`);
             this.results = await this.res.json();
-            this.setState({
-                exhibitionObjects: this.results.objects.filter(result => result.images[0]),
-                fetching: false,
-            });
 
+            this.handleDataLoad(this.results);
             await this.initialFilter();
         } catch (e) {
             console.log(e);
