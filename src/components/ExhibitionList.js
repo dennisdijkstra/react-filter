@@ -20,7 +20,9 @@ const ExhibitionList = (props) => {
                     <Exhibition key={exhibition.id} exhibition={exhibition} />
                 ))}
             </div>
-            <button className="exhibition-list-load-more" onClick={loadMoreItems} type="button">Load more</button>
+            { fetching ? (null) : (
+                <button className="exhibition-list-load-more" onClick={loadMoreItems} type="button">Load more</button>
+            )}
         </div>
     );
 };

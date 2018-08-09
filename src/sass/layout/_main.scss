@@ -13,7 +13,10 @@
 }
 
 .content {
+    display: flex;
     flex: 1;
+    flex-direction: column;
+    justify-content: center;
     padding: 30px;
     background-color: #f0ffff;
 }

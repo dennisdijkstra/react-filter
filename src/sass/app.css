@@ -939,7 +939,10 @@ a {
   flex: 1; }
 
 .content {
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
   padding: 30px;
   background-color: #f0ffff; }
 
@@ -989,8 +992,8 @@ button:focus {
 .exhibition-list-load-more {
   display: block;
   width: 150px;
-  margin: 48px auto 24px;
   padding: 10px;
+  margin: 48px auto 24px;
   font-weight: 600;
   cursor: pointer;
   background-color: #fff;
