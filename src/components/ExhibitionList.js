@@ -7,18 +7,20 @@ const ExhibitionList = (props) => {
     const { fetching, filtered, loadMoreItems } = props;
 
     return (
-        <div className="exhibition-list-items content">
-            { fetching ? (
-                <div className="spinner">
-                    <div className="bounce1" />
-                    <div className="bounce2" />
-                    <div className="bounce3" />
-                </div>
-            ) : (null) }
-            {filtered.map(exhibition => (
-                <Exhibition key={exhibition.id} exhibition={exhibition} />
-            ))}
-            <button onClick={loadMoreItems} type="button">Load more</button>
+        <div className="content">
+            <div className="exhibition-list-items">
+                { fetching ? (
+                    <div className="spinner">
+                        <div className="bounce1" />
+                        <div className="bounce2" />
+                        <div className="bounce3" />
+                    </div>
+                ) : (null) }
+                {filtered.map(exhibition => (
+                    <Exhibition key={exhibition.id} exhibition={exhibition} />
+                ))}
+            </div>
+            <button className="exhibition-list-load-more" onClick={loadMoreItems} type="button">Load more</button>
         </div>
     );
 };

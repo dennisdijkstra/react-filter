@@ -9,4 +9,15 @@
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         width: 100%;
     }
+
+    &-load-more {
+        display: block;
+        width: 150px;
+        margin: 48px auto 24px;
+        padding: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: #fff;
+        border: none;
+    }
 }

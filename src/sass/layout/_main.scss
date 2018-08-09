@@ -13,6 +13,13 @@
 }
 
 .content {
+    flex: 1;
     padding: 30px;
     background-color: #f0ffff;
+}
+
+button {
+    &:focus {
+        outline: none;
+    }
 }
