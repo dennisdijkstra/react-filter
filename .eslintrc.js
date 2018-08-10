@@ -3,7 +3,8 @@ module.exports = {
     "extends": "airbnb",
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest": true
     },
     "settings": {
         "ecmascript": 6,
