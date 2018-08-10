@@ -42,6 +42,8 @@ class ExhibitionListContainer extends Component {
         });
     }
 
+    testFunction = () => 'Testing with Jest and Enzyme';
+
     initialFilter = () => {
         const { search, select } = this.state;
         const searchInput = search.toLowerCase();
