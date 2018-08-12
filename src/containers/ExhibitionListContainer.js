@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ExhibitionList from '../components/ExhibitionList';
 import Filters from '../components/Filters';
+import store from '../store';
 
 
 class ExhibitionListContainer extends Component {

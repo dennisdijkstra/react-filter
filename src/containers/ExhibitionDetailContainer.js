@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ExhibitionDetail from '../components/ExhibitionDetail';
+import store from '../store';
 
 
 class ExhibitionDetailContainer extends Component {
