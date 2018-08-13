@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Exhibition from './Exhibition';
+import CollectionItem from './CollectionItem';
 
 
-const ExhibitionList = (props) => {
+const CollectionItemList = (props) => {
     const { fetching, filtered, loadMoreItems } = props;
 
     return (
@@ -16,8 +16,8 @@ const ExhibitionList = (props) => {
                         <div className="bounce3" />
                     </div>
                 ) : (null) }
-                {filtered.map(exhibition => (
-                    <Exhibition key={exhibition.id} exhibition={exhibition} />
+                {filtered.map(collectionItem => (
+                    <CollectionItem key={collectionItem.id} collectionItem={collectionItem} />
                 ))}
             </div>
             { fetching ? (null) : (
@@ -27,9 +27,9 @@ const ExhibitionList = (props) => {
     );
 };
 
-export default ExhibitionList;
+export default CollectionItemList;
 
-ExhibitionList.propTypes = {
+CollectionItemList.propTypes = {
     fetching: PropTypes.bool.isRequired,
     filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
     loadMoreItems: PropTypes.func.isRequired,

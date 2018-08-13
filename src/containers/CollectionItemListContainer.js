@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import ExhibitionList from '../components/ExhibitionList';
+import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
-import store from '../store';
 
 
 class ExhibitionListContainer extends Component {
@@ -117,7 +116,7 @@ class ExhibitionListContainer extends Component {
         return (
             <div className="container">
                 <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
-                <ExhibitionList fetching={fetching} filtered={filtered} loadMoreItems={this.loadMoreItems} />
+                <CollectionItemList fetching={fetching} filtered={filtered} loadMoreItems={this.loadMoreItems} />
             </div>
         );
     }
