@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import ExhibitionList from '../components/ExhibitionList';
+import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
-import store from '../store';
 
 
 class ExhibitionListContainer extends Component {
@@ -9,7 +8,7 @@ class ExhibitionListContainer extends Component {
         super(props);
 
         this.state = {
-            exhibitionObjects: [],
+            collectionItems: [],
             filtered: [],
             types: [],
             search: '',
@@ -32,9 +31,9 @@ class ExhibitionListContainer extends Component {
     setTypes = (data) => {
         const array = [];
 
-        data.forEach((object) => {
-            if (!array.includes(object.type)) {
-                array.push(object.type);
+        data.forEach((item) => {
+            if (!array.includes(item.type)) {
+                array.push(item.type);
             }
         });
 
@@ -54,9 +53,9 @@ class ExhibitionListContainer extends Component {
     }
 
     filter = (search, select) => {
-        const { exhibitionObjects } = this.state;
-        const searchFiltered = exhibitionObjects.filter(object => object.title.toLowerCase().indexOf(search) !== -1);
-        const searchAndSelectFiltered = select === 'all' ? searchFiltered : searchFiltered.filter(object => object.type.toLowerCase() === select);
+        const { collectionItems } = this.state;
+        const searchFiltered = collectionItems.filter(item => item.title.toLowerCase().indexOf(search) !== -1);
+        const searchAndSelectFiltered = select === 'all' ? searchFiltered : searchFiltered.filter(item => item.type.toLowerCase() === select);
 
         this.setState({
             filtered: searchAndSelectFiltered,
@@ -75,12 +74,12 @@ class ExhibitionListContainer extends Component {
         this.fetchData();
     }
 
-    handleDataLoad = (data) => {
+    handleDataLoad = (results) => {
         const { initialLoad } = this.state;
 
         if (initialLoad) {
             this.setState({
-                exhibitionObjects: data.objects.filter(result => result.images[0]),
+                collectionItems: results.objects.filter(result => result.images[0]),
                 fetching: false,
                 initialLoad: false,
             });
@@ -88,7 +87,7 @@ class ExhibitionListContainer extends Component {
             this.setState((prevState) => {
                 console.log(prevState);
 
-                return { exhibitionObjects: [...prevState.exhibitionObjects, ...data.objects] };
+                return { collectionItems: [...prevState.collectionItems, ...results.objects] };
             });
         }
     }
@@ -117,7 +116,7 @@ class ExhibitionListContainer extends Component {
         return (
             <div className="container">
                 <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
-                <ExhibitionList fetching={fetching} filtered={filtered} loadMoreItems={this.loadMoreItems} />
+                <CollectionItemList fetching={fetching} filtered={filtered} loadMoreItems={this.loadMoreItems} />
             </div>
         );
     }

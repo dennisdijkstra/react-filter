@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import ExhibitionListContainer from './ExhibitionListContainer';
+import CollectionItemListContainer from './CollectionItemListContainer';
 
 configure({ adapter: new Adapter() });
 
-const wrapper = shallow(<ExhibitionListContainer />);
+const wrapper = shallow(<CollectionItemListContainer />);
 const testFunction = wrapper.instance().testFunction;
 
 describe(testFunction, () => {

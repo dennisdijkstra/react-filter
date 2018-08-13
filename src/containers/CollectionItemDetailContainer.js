@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import ExhibitionDetail from '../components/ExhibitionDetail';
-import store from '../store';
+import CollectionItemDetail from '../components/CollectionItemDetail';
 
 
-class ExhibitionDetailContainer extends Component {
+class CollectionItemDetailContainer extends Component {
     state = {
-        object: null,
+        item: null,
     }
 
     async componentDidMount() {
@@ -13,9 +12,9 @@ class ExhibitionDetailContainer extends Component {
 
         try {
             this.res = await fetch(`https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.objects.getInfo&access_token=491c2e66a84e1faf2e7e906ff6f24579&object_id=${match.params.id}`);
-            const object = await this.res.json();
+            const item = await this.res.json();
             this.setState({
-                object: object.object,
+                item: item.object,
             });
         } catch (e) {
             console.log(e);
@@ -23,16 +22,16 @@ class ExhibitionDetailContainer extends Component {
     }
 
     render() {
-        const { object } = this.state;
+        const { item } = this.state;
 
         return (
             <div className="container">
-                {object ? (
-                    <ExhibitionDetail object={object} />
+                {item ? (
+                    <CollectionItemDetail item={item} />
                 ) : (null) }
             </div>
         );
     }
 }
 
-export default ExhibitionDetailContainer;
+export default CollectionItemDetailContainer;

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 
-const Exhibition = ({ exhibition }) => {
-    const { title, images, id } = exhibition;
+const CollectionItem = ({ collectionItem }) => {
+    const { title, images, id } = collectionItem;
 
     return (
         <div className="exhibition-list-item">
@@ -16,10 +16,10 @@ const Exhibition = ({ exhibition }) => {
     );
 };
 
-export default Exhibition;
+export default CollectionItem;
 
-Exhibition.propTypes = {
-    exhibition: PropTypes.shape({
+CollectionItem.propTypes = {
+    collectionItem: PropTypes.shape({
         title: PropTypes.string.isRequired,
     }).isRequired,
 };

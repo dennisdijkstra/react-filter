@@ -6,8 +6,8 @@ import {
     Route,
     Switch,
 } from 'react-router-dom';
-import ExhibitionListContainer from './containers/ExhibitionListContainer';
-import ExhibitionDetailContainer from './containers/ExhibitionDetailContainer';
+import CollectionItemListContainer from './containers/CollectionItemListContainer';
+import CollectionItemDetailContainer from './containers/CollectionItemDetailContainer';
 
 
 const App = () => (
@@ -17,8 +17,8 @@ const App = () => (
                 <h1 className="exhibition-list-title">Cooper Hewitt Typography Objects</h1>
             </div>
             <Switch>
-                <Route exact path="/" render={props => <ExhibitionListContainer {...props} />} />
-                <Route path="/:id" component={ExhibitionDetailContainer} />
+                <Route exact path="/" render={props => <CollectionItemListContainer {...props} />} />
+                <Route path="/:id" component={CollectionItemDetailContainer} />
             </Switch>
         </div>
     </Router>
