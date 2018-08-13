@@ -7,7 +7,7 @@ class Filters extends Component {
         updateStateValues: PropTypes.func.isRequired,
         search: PropTypes.string.isRequired,
         select: PropTypes.string.isRequired,
-        types: PropTypes.arrayOf(PropTypes.string).isRequired,
+        selectCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
     };
 
     getInput = () => {
@@ -19,7 +19,7 @@ class Filters extends Component {
     }
 
     render() {
-        const { search, select, types } = this.props;
+        const { search, select, selectCategories } = this.props;
 
         return (
             <div className="filter">
@@ -32,8 +32,8 @@ class Filters extends Component {
                     <p className="filter-input-title">Type of object:</p>
                     <select name="type" onChange={this.getInput} value={select} ref={(input => this.select = input)}>
                         <option value="all">All</option>
-                        {types.map(type => (
-                            <option value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
+                        {selectCategories.map(category => (
+                            <option value={category}>{category.charAt(0).toUpperCase() + category.slice(1)}</option>
                         ))}
                     </select>
                 </div>

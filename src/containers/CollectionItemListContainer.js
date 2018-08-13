@@ -8,11 +8,11 @@ class ExhibitionListContainer extends Component {
         super(props);
 
         this.state = {
-            collectionItems: [],
-            filtered: [],
-            types: [],
+            allCollectionItems: [],
+            filteredItems: [],
             search: '',
             select: 'all',
+            selectCategories: [],
             fetching: false,
             initialLoad: true,
         };
@@ -28,7 +28,7 @@ class ExhibitionListContainer extends Component {
         this.fetchData();
     }
 
-    setTypes = (data) => {
+    setSelectCategories = (data) => {
         const array = [];
 
         data.forEach((item) => {
@@ -38,7 +38,7 @@ class ExhibitionListContainer extends Component {
         });
 
         this.setState({
-            types: array,
+            selectCategories: array,
         });
     }
 
@@ -53,13 +53,13 @@ class ExhibitionListContainer extends Component {
     }
 
     filter = (search, select) => {
-        const { collectionItems } = this.state;
-        const searchFiltered = collectionItems.filter(item => item.title.toLowerCase().indexOf(search) !== -1);
+        const { allCollectionItems } = this.state;
+        const searchFiltered = allCollectionItems.filter(item => item.title.toLowerCase().indexOf(search) !== -1);
         const searchAndSelectFiltered = select === 'all' ? searchFiltered : searchFiltered.filter(item => item.type.toLowerCase() === select);
 
         this.setState({
-            filtered: searchAndSelectFiltered,
-        }, this.setTypes(searchAndSelectFiltered));
+            filteredItems: searchAndSelectFiltered,
+        }, this.setSelectCategories(searchAndSelectFiltered));
     }
 
     updateStateValues = (search, select) => {
@@ -79,7 +79,7 @@ class ExhibitionListContainer extends Component {
 
         if (initialLoad) {
             this.setState({
-                collectionItems: results.objects.filter(result => result.images[0]),
+                allCollectionItems: results.objects.filter(result => result.images[0]),
                 fetching: false,
                 initialLoad: false,
             });
@@ -87,7 +87,7 @@ class ExhibitionListContainer extends Component {
             this.setState((prevState) => {
                 console.log(prevState);
 
-                return { collectionItems: [...prevState.collectionItems, ...results.objects] };
+                return { allCollectionItems: [...prevState.allCollectionItems, ...results.objects] };
             });
         }
     }
@@ -108,15 +108,15 @@ class ExhibitionListContainer extends Component {
         const {
             search,
             select,
-            filtered,
-            types,
+            filteredItems,
+            selectCategories,
             fetching,
         } = this.state;
 
         return (
             <div className="container">
-                <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
-                <CollectionItemList fetching={fetching} filtered={filtered} loadMoreItems={this.loadMoreItems} />
+                <Filters updateStateValues={this.updateStateValues} search={search} select={select} selectCategories={selectCategories} />
+                <CollectionItemList fetching={fetching} filteredItems={filteredItems} loadMoreItems={this.loadMoreItems} />
             </div>
         );
     }

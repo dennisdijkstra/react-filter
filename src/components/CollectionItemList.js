@@ -4,7 +4,7 @@ import CollectionItem from './CollectionItem';
 
 
 const CollectionItemList = (props) => {
-    const { fetching, filtered, loadMoreItems } = props;
+    const { fetching, filteredItems, loadMoreItems } = props;
 
     return (
         <div className="content">
@@ -16,7 +16,7 @@ const CollectionItemList = (props) => {
                         <div className="bounce3" />
                     </div>
                 ) : (null) }
-                {filtered.map(collectionItem => (
+                {filteredItems.map(collectionItem => (
                     <CollectionItem key={collectionItem.id} collectionItem={collectionItem} />
                 ))}
             </div>
@@ -31,6 +31,6 @@ export default CollectionItemList;
 
 CollectionItemList.propTypes = {
     fetching: PropTypes.bool.isRequired,
-    filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
+    filteredItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     loadMoreItems: PropTypes.func.isRequired,
 };
