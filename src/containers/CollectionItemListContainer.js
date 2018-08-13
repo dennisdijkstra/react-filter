@@ -10,11 +10,11 @@ class ExhibitionListContainer extends Component {
         this.state = {
             allCollectionItems: [],
             filteredItems: [],
+            fetching: false,
+            initialLoad: true,
             search: '',
             select: 'all',
             selectCategories: [],
-            fetching: false,
-            initialLoad: true,
         };
 
         this.results = {};
