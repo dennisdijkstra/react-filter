@@ -115,8 +115,17 @@ class ExhibitionListContainer extends Component {
 
         return (
             <div className="container">
-                <Filters updateStateValues={this.updateStateValues} search={search} select={select} selectCategories={selectCategories} />
-                <CollectionItemList fetching={fetching} filteredItems={filteredItems} loadMoreItems={this.loadMoreItems} />
+                <Filters
+                    updateStateValues={this.updateStateValues}
+                    search={search}
+                    select={select}
+                    selectCategories={selectCategories}
+                />
+                <CollectionItemList
+                    fetching={fetching}
+                    filteredItems={filteredItems}
+                    loadMoreItems={this.loadMoreItems}
+                />
             </div>
         );
     }

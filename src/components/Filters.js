@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import store from '../datamodel/store';
+import updateSearchValue from '../datamodel/Filter/actions';
 
 
 class Filters extends Component {
     static propTypes = {
-        updateStateValues: PropTypes.func.isRequired,
-        search: PropTypes.string.isRequired,
         select: PropTypes.string.isRequired,
         selectCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
     };
 
     getInput = () => {
-        const { updateStateValues } = this.props;
         const search = this.search.value;
-        const select = this.select.value;
 
-        updateStateValues(search, select);
+        store.dispatch(updateSearchValue(search));
     }
 
     render() {
-        const { search, select, selectCategories } = this.props;
+        const { select, selectCategories } = this.props;
 
         return (
             <div className="filter">
                 <h2 className="filter-title">Filters</h2>
                 <div className="filter-input">
                     <p className="filter-input-title">Search:</p>
-                    <input type="text" onChange={this.getInput} value={search} ref={(input => this.search = input)} />
+                    <input type="text" onChange={this.getInput} value={store.getState().search} ref={(input => this.search = input)} />
                 </div>
                 <div className="filter-input">
                     <p className="filter-input-title">Type of object:</p>

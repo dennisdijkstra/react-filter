@@ -1,8 +1,8 @@
 import { createStore } from 'redux';
-import reducer from '../reducers';
+import reducer from './reducers';
 
 const initialState = {
-    state: 'state',
+    search: '',
 };
 
 const store = createStore(reducer, initialState);
