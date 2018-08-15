@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import store from '../datamodel/store';
-import updateSearchValue from '../datamodel/Filter/actions';
+import { setSearchValue, setSelectValue } from '../datamodel/Filter/actions';
 
 
 class Filters extends Component {
     static propTypes = {
-        select: PropTypes.string.isRequired,
         filter: PropTypes.func.isRequired,
         selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
     };
@@ -16,12 +15,13 @@ class Filters extends Component {
         const search = this.search.value;
         const select = this.select.value;
 
-        store.dispatch(updateSearchValue(search));
+        store.dispatch(setSearchValue(search));
+        store.dispatch(setSelectValue(select));
         filter(search, select);
     }
 
     render() {
-        const { select, selectCategories } = this.props;
+        const { selectCategories } = this.props;
 
         return (
             <div className="filter">
@@ -32,7 +32,7 @@ class Filters extends Component {
                 </div>
                 <div className="filter-input">
                     <p className="filter-input-title">Type of object:</p>
-                    <select name="type" onChange={this.getInput} value={select} ref={(input => this.select = input)}>
+                    <select name="type" onChange={this.getInput} value={store.getState().select} ref={(input => this.select = input)}>
                         <option value="all">All</option>
                         {selectCategories.map(category => (
                             <option

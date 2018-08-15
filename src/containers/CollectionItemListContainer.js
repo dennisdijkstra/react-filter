@@ -13,7 +13,6 @@ class ExhibitionListContainer extends Component {
             filteredItems: [],
             fetching: false,
             initialLoad: true,
-            select: 'all',
             selectCategories: [],
         };
 
@@ -45,9 +44,8 @@ class ExhibitionListContainer extends Component {
     testFunction = () => 'Testing with Jest and Enzyme';
 
     initialFilter = () => {
-        const { select } = this.state;
         const searchInput = store.getState().search.toLowerCase();
-        const selectInput = select.toLowerCase();
+        const selectInput = store.getState().select.toLowerCase();
 
         this.filter(searchInput, selectInput);
     }
@@ -60,12 +58,6 @@ class ExhibitionListContainer extends Component {
         this.setState({
             filteredItems: searchAndSelectFiltered,
         }, this.setSelectCategories(searchAndSelectFiltered));
-    }
-
-    updateStateValues = (search, select) => {
-        this.setState({
-            select,
-        }, this.filter(search, select));
     }
 
     loadMoreItems = () => {
@@ -105,7 +97,6 @@ class ExhibitionListContainer extends Component {
 
     render() {
         const {
-            select,
             filteredItems,
             selectCategories,
             fetching,
@@ -115,7 +106,6 @@ class ExhibitionListContainer extends Component {
             <div className="container">
                 <Filters
                     filter={this.filter}
-                    select={select}
                     selectCategories={selectCategories}
                 />
                 <CollectionItemList

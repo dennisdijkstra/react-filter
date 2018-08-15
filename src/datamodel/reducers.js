@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import search from './Filter/reducers';
+import { search, select } from './Filter/reducers';
 
 export default combineReducers({
     search,
+    select,
 });
