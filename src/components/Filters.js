@@ -8,7 +8,7 @@ class Filters extends Component {
     static propTypes = {
         select: PropTypes.string.isRequired,
         filter: PropTypes.func.isRequired,
-        selectCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
+        selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
     };
 
     getInput = () => {
@@ -35,7 +35,12 @@ class Filters extends Component {
                     <select name="type" onChange={this.getInput} value={select} ref={(input => this.select = input)}>
                         <option value="all">All</option>
                         {selectCategories.map(category => (
-                            <option value={category}>{category.charAt(0).toUpperCase() + category.slice(1)}</option>
+                            <option
+                                key={category.id}
+                                value={category.type}
+                            >
+                                {category.type.charAt(0).toUpperCase() + category.type.slice(1)}
+                            </option>
                         ))}
                     </select>
                 </div>

@@ -29,16 +29,16 @@ class ExhibitionListContainer extends Component {
     }
 
     setSelectCategories = (data) => {
-        const array = [];
+        const categories = [];
 
         data.forEach((item) => {
-            if (!array.includes(item.type)) {
-                array.push(item.type);
+            if (!categories.filter(categorie => (categorie.type === item.type)).length) {
+                categories.push({ id: Math.random().toString(36).substr(2, 7), type: item.type });
             }
         });
 
         this.setState({
-            selectCategories: array,
+            selectCategories: categories,
         });
     }
 
