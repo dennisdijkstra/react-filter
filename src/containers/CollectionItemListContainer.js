@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import store from '../datamodel/store';
 import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
 
@@ -8,13 +9,12 @@ class ExhibitionListContainer extends Component {
         super(props);
 
         this.state = {
-            collectionItems: [],
-            filtered: [],
-            types: [],
-            search: '',
-            select: 'all',
+            allCollectionItems: [],
+            filteredItems: [],
             fetching: false,
             initialLoad: true,
+            select: 'all',
+            selectCategories: [],
         };
 
         this.results = {};
@@ -28,7 +28,7 @@ class ExhibitionListContainer extends Component {
         this.fetchData();
     }
 
-    setTypes = (data) => {
+    setSelectCategories = (data) => {
         const array = [];
 
         data.forEach((item) => {
@@ -38,33 +38,32 @@ class ExhibitionListContainer extends Component {
         });
 
         this.setState({
-            types: array,
+            selectCategories: array,
         });
     }
 
     testFunction = () => 'Testing with Jest and Enzyme';
 
     initialFilter = () => {
-        const { search, select } = this.state;
-        const searchInput = search.toLowerCase();
+        const { select } = this.state;
+        const searchInput = store.getState().search.toLowerCase();
         const selectInput = select.toLowerCase();
 
         this.filter(searchInput, selectInput);
     }
 
     filter = (search, select) => {
-        const { collectionItems } = this.state;
-        const searchFiltered = collectionItems.filter(item => item.title.toLowerCase().indexOf(search) !== -1);
+        const { allCollectionItems } = this.state;
+        const searchFiltered = allCollectionItems.filter(item => item.title.toLowerCase().indexOf(search) !== -1);
         const searchAndSelectFiltered = select === 'all' ? searchFiltered : searchFiltered.filter(item => item.type.toLowerCase() === select);
 
         this.setState({
-            filtered: searchAndSelectFiltered,
-        }, this.setTypes(searchAndSelectFiltered));
+            filteredItems: searchAndSelectFiltered,
+        }, this.setSelectCategories(searchAndSelectFiltered));
     }
 
     updateStateValues = (search, select) => {
         this.setState({
-            search,
             select,
         }, this.filter(search, select));
     }
@@ -79,7 +78,7 @@ class ExhibitionListContainer extends Component {
 
         if (initialLoad) {
             this.setState({
-                collectionItems: results.objects.filter(result => result.images[0]),
+                allCollectionItems: results.objects.filter(result => result.images[0]),
                 fetching: false,
                 initialLoad: false,
             });
@@ -87,7 +86,7 @@ class ExhibitionListContainer extends Component {
             this.setState((prevState) => {
                 console.log(prevState);
 
-                return { collectionItems: [...prevState.collectionItems, ...results.objects] };
+                return { allCollectionItems: [...prevState.allCollectionItems, ...results.objects] };
             });
         }
     }
@@ -106,17 +105,24 @@ class ExhibitionListContainer extends Component {
 
     render() {
         const {
-            search,
             select,
-            filtered,
-            types,
+            filteredItems,
+            selectCategories,
             fetching,
         } = this.state;
 
         return (
             <div className="container">
-                <Filters updateStateValues={this.updateStateValues} search={search} select={select} types={types} />
-                <CollectionItemList fetching={fetching} filtered={filtered} loadMoreItems={this.loadMoreItems} />
+                <Filters
+                    filter={this.filter}
+                    select={select}
+                    selectCategories={selectCategories}
+                />
+                <CollectionItemList
+                    fetching={fetching}
+                    filteredItems={filteredItems}
+                    loadMoreItems={this.loadMoreItems}
+                />
             </div>
         );
     }
