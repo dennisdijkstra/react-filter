@@ -30,6 +30,7 @@ module.exports = {
         "function-paren-newline": 0,
         "no-return-assign": 0,
         "react/jsx-indent-props": [1, 4],
+        "no-unused-expressions": 0,
         "indent": [
             "error", 4
         ],

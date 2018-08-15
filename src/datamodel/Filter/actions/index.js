@@ -1,3 +1,8 @@
-const updateSearchValue = value => ({ type: 'SET_SEARCH_VALUE', value });
+import { SET_SEARCH_VALUE, SET_SELECT_VALUE } from '../../constants/action-types';
 
-export { updateSearchValue as default };
+
+const setSearchValue = value => ({ type: SET_SEARCH_VALUE, value });
+const setSelectValue = value => ({ type: SET_SELECT_VALUE, value });
+
+
+export { setSelectValue, setSearchValue };
