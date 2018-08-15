@@ -102,6 +102,8 @@ class ExhibitionListContainer extends Component {
             fetching,
         } = this.state;
 
+        console.log(store.getState());
+
         return (
             <div className="container">
                 <Filters
