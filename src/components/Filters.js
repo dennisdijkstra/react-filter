@@ -7,13 +7,17 @@ import updateSearchValue from '../datamodel/Filter/actions';
 class Filters extends Component {
     static propTypes = {
         select: PropTypes.string.isRequired,
+        filter: PropTypes.func.isRequired,
         selectCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
     };
 
     getInput = () => {
+        const { filter } = this.props;
         const search = this.search.value;
+        const select = this.select.value;
 
         store.dispatch(updateSearchValue(search));
+        filter(search, select);
     }
 
     render() {

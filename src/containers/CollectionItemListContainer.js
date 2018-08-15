@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import store from '../datamodel/store';
 import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
 
@@ -12,7 +13,6 @@ class ExhibitionListContainer extends Component {
             filteredItems: [],
             fetching: false,
             initialLoad: true,
-            search: '',
             select: 'all',
             selectCategories: [],
         };
@@ -45,8 +45,8 @@ class ExhibitionListContainer extends Component {
     testFunction = () => 'Testing with Jest and Enzyme';
 
     initialFilter = () => {
-        const { search, select } = this.state;
-        const searchInput = search.toLowerCase();
+        const { select } = this.state;
+        const searchInput = store.getState().search.toLowerCase();
         const selectInput = select.toLowerCase();
 
         this.filter(searchInput, selectInput);
@@ -64,7 +64,6 @@ class ExhibitionListContainer extends Component {
 
     updateStateValues = (search, select) => {
         this.setState({
-            search,
             select,
         }, this.filter(search, select));
     }
@@ -106,7 +105,6 @@ class ExhibitionListContainer extends Component {
 
     render() {
         const {
-            search,
             select,
             filteredItems,
             selectCategories,
@@ -116,8 +114,7 @@ class ExhibitionListContainer extends Component {
         return (
             <div className="container">
                 <Filters
-                    updateStateValues={this.updateStateValues}
-                    search={search}
+                    filter={this.filter}
                     select={select}
                     selectCategories={selectCategories}
                 />

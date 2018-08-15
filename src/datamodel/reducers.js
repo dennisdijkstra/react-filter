@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import filter from './Filter/reducers';
+import search from './Filter/reducers';
 
 export default combineReducers({
-    filter,
+    search,
 });
