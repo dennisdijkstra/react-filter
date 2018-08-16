@@ -13,8 +13,10 @@ class CollectionItemListContainer extends Component {
     static propTypes = {
         search: PropTypes.string.isRequired,
         select: PropTypes.string.isRequired,
+        selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
         setSearchValue: PropTypes.func.isRequired,
         setSelectValue: PropTypes.func.isRequired,
+        setSelectCategories: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -25,7 +27,6 @@ class CollectionItemListContainer extends Component {
             filteredItems: [],
             fetching: false,
             initialLoad: true,
-            selectCategories: [],
         };
 
         this.results = {};
@@ -41,6 +42,7 @@ class CollectionItemListContainer extends Component {
 
     setSelectCategories = (data) => {
         const categories = [];
+        const { setSelectCategories } = this.props;
 
         data.forEach((item) => {
             if (!categories.filter(categorie => (categorie.type === item.type)).length) {
@@ -48,9 +50,7 @@ class CollectionItemListContainer extends Component {
             }
         });
 
-        this.setState({
-            selectCategories: categories,
-        });
+        setSelectCategories(categories);
     }
 
     testFunction = () => 'Testing with Jest and Enzyme';
@@ -107,11 +107,9 @@ class CollectionItemListContainer extends Component {
         }
     }
 
-
     render() {
         const {
             filteredItems,
-            selectCategories,
             fetching,
         } = this.state;
 
@@ -120,6 +118,7 @@ class CollectionItemListContainer extends Component {
             select,
             setSearchValue,
             setSelectValue,
+            selectCategories,
         } = this.props;
 
         return (
@@ -142,7 +141,7 @@ class CollectionItemListContainer extends Component {
     }
 }
 
-const mapStateToProps = state => ({ search: state.search, select: state.select });
+const mapStateToProps = ({ search, select, selectCategories }) => ({ search, select, selectCategories });
 const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
 
 export default connect(
