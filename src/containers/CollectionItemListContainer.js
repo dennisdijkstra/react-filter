@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import store from '../datamodel/store';
 import * as Actions from '../datamodel/Filter/actions';
 
 import CollectionItemList from '../components/CollectionItemList';
@@ -56,10 +55,12 @@ class CollectionItemListContainer extends Component {
     testFunction = () => 'Testing with Jest and Enzyme';
 
     initialFilter = () => {
-        const searchInput = store.getState().search.toLowerCase();
-        const selectInput = store.getState().select.toLowerCase();
+        const {
+            search,
+            select,
+        } = this.props;
 
-        this.filter(searchInput, selectInput);
+        this.filter(search.toLowerCase(), select.toLowerCase());
     }
 
     filter = (search, select) => {
@@ -87,11 +88,7 @@ class CollectionItemListContainer extends Component {
                 initialLoad: false,
             });
         } else {
-            this.setState((prevState) => {
-                console.log(prevState);
-
-                return { allCollectionItems: [...prevState.allCollectionItems, ...results.objects] };
-            });
+            this.setState(prevState => ({ allCollectionItems: [...prevState.allCollectionItems, ...results.objects] }));
         }
     }
 
