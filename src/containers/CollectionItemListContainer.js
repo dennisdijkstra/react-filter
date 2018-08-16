@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import store from '../datamodel/store';
+import * as Actions from '../datamodel/Filter/actions';
+
 import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
 
 
 class CollectionItemListContainer extends Component {
     static propTypes = {
+        search: PropTypes.string.isRequired,
         select: PropTypes.string.isRequired,
+        setSearchValue: PropTypes.func.isRequired,
+        setSelectValue: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -109,12 +115,20 @@ class CollectionItemListContainer extends Component {
             fetching,
         } = this.state;
 
-        const { select } = this.props;
+        const {
+            search,
+            select,
+            setSearchValue,
+            setSelectValue,
+        } = this.props;
 
         return (
             <div className="container">
                 <Filters
+                    search={search}
                     select={select}
+                    setSearchValue={setSearchValue}
+                    setSelectValue={setSelectValue}
                     filter={this.filter}
                     selectCategories={selectCategories}
                 />
@@ -128,14 +142,10 @@ class CollectionItemListContainer extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    console.log(state.select);
-
-    return {
-        select: state.select,
-    };
-};
+const mapStateToProps = state => ({ search: state.search, select: state.select });
+const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
 
 export default connect(
     mapStateToProps,
+    mapDispatchToProps,
 )(CollectionItemListContainer);
