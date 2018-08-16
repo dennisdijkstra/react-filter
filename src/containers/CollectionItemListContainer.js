@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import store from '../datamodel/store';
 import * as Actions from '../datamodel/Filter/actions';
 
 import CollectionItemList from '../components/CollectionItemList';
@@ -13,8 +12,10 @@ class CollectionItemListContainer extends Component {
     static propTypes = {
         search: PropTypes.string.isRequired,
         select: PropTypes.string.isRequired,
+        selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
         setSearchValue: PropTypes.func.isRequired,
         setSelectValue: PropTypes.func.isRequired,
+        setSelectCategories: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -25,7 +26,6 @@ class CollectionItemListContainer extends Component {
             filteredItems: [],
             fetching: false,
             initialLoad: true,
-            selectCategories: [],
         };
 
         this.results = {};
@@ -41,6 +41,7 @@ class CollectionItemListContainer extends Component {
 
     setSelectCategories = (data) => {
         const categories = [];
+        const { setSelectCategories } = this.props;
 
         data.forEach((item) => {
             if (!categories.filter(categorie => (categorie.type === item.type)).length) {
@@ -48,18 +49,18 @@ class CollectionItemListContainer extends Component {
             }
         });
 
-        this.setState({
-            selectCategories: categories,
-        });
+        setSelectCategories(categories);
     }
 
     testFunction = () => 'Testing with Jest and Enzyme';
 
     initialFilter = () => {
-        const searchInput = store.getState().search.toLowerCase();
-        const selectInput = store.getState().select.toLowerCase();
+        const {
+            search,
+            select,
+        } = this.props;
 
-        this.filter(searchInput, selectInput);
+        this.filter(search.toLowerCase(), select.toLowerCase());
     }
 
     filter = (search, select) => {
@@ -87,11 +88,7 @@ class CollectionItemListContainer extends Component {
                 initialLoad: false,
             });
         } else {
-            this.setState((prevState) => {
-                console.log(prevState);
-
-                return { allCollectionItems: [...prevState.allCollectionItems, ...results.objects] };
-            });
+            this.setState(prevState => ({ allCollectionItems: [...prevState.allCollectionItems, ...results.objects] }));
         }
     }
 
@@ -107,11 +104,9 @@ class CollectionItemListContainer extends Component {
         }
     }
 
-
     render() {
         const {
             filteredItems,
-            selectCategories,
             fetching,
         } = this.state;
 
@@ -120,6 +115,7 @@ class CollectionItemListContainer extends Component {
             select,
             setSearchValue,
             setSelectValue,
+            selectCategories,
         } = this.props;
 
         return (
@@ -142,7 +138,7 @@ class CollectionItemListContainer extends Component {
     }
 }
 
-const mapStateToProps = state => ({ search: state.search, select: state.select });
+const mapStateToProps = ({ search, select, selectCategories }) => ({ search, select, selectCategories });
 const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
 
 export default connect(
