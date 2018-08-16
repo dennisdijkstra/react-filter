@@ -1,38 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import store from '../datamodel/store';
-import { setSearchValue, setSelectValue } from '../datamodel/Filter/actions';
-
 
 class Filters extends Component {
     static propTypes = {
+        search: PropTypes.string.isRequired,
+        select: PropTypes.string.isRequired,
+        setSearchValue: PropTypes.func.isRequired,
+        setSelectValue: PropTypes.func.isRequired,
         filter: PropTypes.func.isRequired,
         selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
     };
 
     getInput = () => {
-        const { filter } = this.props;
+        const { filter, setSearchValue, setSelectValue } = this.props;
         const search = this.search.value;
         const select = this.select.value;
 
-        store.dispatch(setSearchValue(search));
-        store.dispatch(setSelectValue(select));
+        setSearchValue(search);
+        setSelectValue(select);
         filter(search, select);
     }
 
     render() {
-        const { selectCategories } = this.props;
+        const { search, select, selectCategories } = this.props;
 
         return (
             <div className="filter">
                 <h2 className="filter-title">Filters</h2>
                 <div className="filter-input">
                     <p className="filter-input-title">Search:</p>
-                    <input type="text" onChange={this.getInput} value={store.getState().search} ref={(input => this.search = input)} />
+                    <input type="text" onChange={this.getInput} value={search} ref={(input => this.search = input)} />
                 </div>
                 <div className="filter-input">
                     <p className="filter-input-title">Type of object:</p>
-                    <select name="type" onChange={this.getInput} value={store.getState().select} ref={(input => this.select = input)}>
+                    <select name="type" onChange={this.getInput} value={select} ref={(input => this.select = input)}>
                         <option value="all">All</option>
                         {selectCategories.map(category => (
                             <option

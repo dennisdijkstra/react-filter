@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import store from '../datamodel/store';
+import * as Actions from '../datamodel/Filter/actions';
+
 import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
 
 
-class ExhibitionListContainer extends Component {
+class CollectionItemListContainer extends Component {
+    static propTypes = {
+        search: PropTypes.string.isRequired,
+        select: PropTypes.string.isRequired,
+        setSearchValue: PropTypes.func.isRequired,
+        setSelectValue: PropTypes.func.isRequired,
+    };
+
     constructor(props) {
         super(props);
 
@@ -95,6 +107,7 @@ class ExhibitionListContainer extends Component {
         }
     }
 
+
     render() {
         const {
             filteredItems,
@@ -102,9 +115,20 @@ class ExhibitionListContainer extends Component {
             fetching,
         } = this.state;
 
+        const {
+            search,
+            select,
+            setSearchValue,
+            setSelectValue,
+        } = this.props;
+
         return (
             <div className="container">
                 <Filters
+                    search={search}
+                    select={select}
+                    setSearchValue={setSearchValue}
+                    setSelectValue={setSelectValue}
                     filter={this.filter}
                     selectCategories={selectCategories}
                 />
@@ -118,4 +142,10 @@ class ExhibitionListContainer extends Component {
     }
 }
 
-export default ExhibitionListContainer;
+const mapStateToProps = state => ({ search: state.search, select: state.select });
+const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(CollectionItemListContainer);
