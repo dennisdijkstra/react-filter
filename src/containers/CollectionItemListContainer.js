@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import store from '../datamodel/store';
 import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
 
 
-class ExhibitionListContainer extends Component {
+class CollectionItemListContainer extends Component {
+    static propTypes = {
+        select: PropTypes.string.isRequired,
+    };
+
     constructor(props) {
         super(props);
 
@@ -95,6 +101,7 @@ class ExhibitionListContainer extends Component {
         }
     }
 
+
     render() {
         const {
             filteredItems,
@@ -102,9 +109,12 @@ class ExhibitionListContainer extends Component {
             fetching,
         } = this.state;
 
+        const { select } = this.props;
+
         return (
             <div className="container">
                 <Filters
+                    select={select}
                     filter={this.filter}
                     selectCategories={selectCategories}
                 />
@@ -118,4 +128,14 @@ class ExhibitionListContainer extends Component {
     }
 }
 
-export default ExhibitionListContainer;
+const mapStateToProps = (state) => {
+    console.log(state.select);
+
+    return {
+        select: state.select,
+    };
+};
+
+export default connect(
+    mapStateToProps,
+)(CollectionItemListContainer);

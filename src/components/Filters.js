@@ -6,6 +6,7 @@ import { setSearchValue, setSelectValue } from '../datamodel/Filter/actions';
 
 class Filters extends Component {
     static propTypes = {
+        select: PropTypes.string.isRequired,
         filter: PropTypes.func.isRequired,
         selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
     };
@@ -21,7 +22,7 @@ class Filters extends Component {
     }
 
     render() {
-        const { selectCategories } = this.props;
+        const { selectCategories, select } = this.props;
 
         return (
             <div className="filter">
@@ -32,7 +33,7 @@ class Filters extends Component {
                 </div>
                 <div className="filter-input">
                     <p className="filter-input-title">Type of object:</p>
-                    <select name="type" onChange={this.getInput} value={store.getState().select} ref={(input => this.select = input)}>
+                    <select name="type" onChange={this.getInput} value={select} ref={(input => this.select = input)}>
                         <option value="all">All</option>
                         {selectCategories.map(category => (
                             <option
