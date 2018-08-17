@@ -10,7 +10,6 @@ beforeAll(() => {
     jest.spyOn(filters, 'getInput').mockImplementation(() => true);
 });
 
-
 describe('Filters', () => {
     it('should be defined', () => {
         expect(filters).toBeDefined();
