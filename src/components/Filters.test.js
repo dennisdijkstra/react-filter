@@ -5,10 +5,7 @@ import Filters from './Filters';
 
 configure({ adapter: new Adapter() });
 const filters = new Filters();
-
-beforeAll(() => {
-    jest.spyOn(filters, 'getInput').mockImplementation(() => true);
-});
+let props;
 
 describe('Filters', () => {
     it('should be defined', () => {
@@ -16,11 +13,10 @@ describe('Filters', () => {
     });
 
     it('should render correctly', () => {
-        const selectCategories = [{ id: '3445', type: 'all' }];
-        const component = shallow(
-            <Filters selectCategories={selectCategories} />,
+        const wrapper = shallow(
+            <Filters {...props} />,
         );
-        expect(component).toMatchSnapshot();
+        expect(wrapper).toMatchSnapshot();
     });
 
     it('getInput should be defined', () => {
@@ -30,5 +26,18 @@ describe('Filters', () => {
     it('getInput should be called', () => {
         filters.getInput();
         expect(filters.getInput).toHaveBeenCalled();
+    });
+
+    beforeEach(() => {
+        props = {
+            selectCategories: [{ id: '3445', type: 'all' }],
+            search: '',
+            select: 'all',
+            filter: jest.fn(),
+            setSearchValue: jest.fn(),
+            setSelectValue: jest.fn(),
+        };
+
+        jest.spyOn(filters, 'getInput').mockImplementation(() => true);
     });
 });
