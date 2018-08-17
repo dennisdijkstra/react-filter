@@ -3,19 +3,17 @@ import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Filters from './Filters';
 
-jest.mock('./Filters');
 configure({ adapter: new Adapter() });
+const filters = new Filters();
 
-const Filter = new Filters();
-console.log(Filter);
-
-beforeEach(() => {
-    Filters.mockClear();
+beforeAll(() => {
+    jest.spyOn(filters, 'getInput').mockImplementation(() => true);
 });
+
 
 describe('Filters', () => {
     it('should be defined', () => {
-        expect(Filters).toBeDefined();
+        expect(filters).toBeDefined();
     });
 
     it('should render correctly', () => {
@@ -26,7 +24,12 @@ describe('Filters', () => {
         expect(component).toMatchSnapshot();
     });
 
-    it('should be defined', () => {
-        expect(Filter.getInput).toBeDefined();
+    it('getInput should be defined', () => {
+        expect(filters.getInput).toBeDefined();
+    });
+
+    it('getInput should be called', () => {
+        filters.getInput();
+        expect(filters.getInput).toHaveBeenCalled();
     });
 });

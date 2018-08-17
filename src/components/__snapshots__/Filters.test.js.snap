@@ -20,9 +20,435 @@ ShallowWrapper {
     "simulateEvent": [Function],
     "unmount": [Function],
   },
-  Symbol(enzyme.__node__): undefined,
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <h2
+          className="filter-title"
+        >
+          Filters
+        </h2>,
+        <div
+          className="filter-input"
+        >
+          <p
+            className="filter-input-title"
+          >
+            Search:
+          </p>
+          <input
+            onChange={[Function]}
+            type="text"
+          />
+        </div>,
+        <div
+          className="filter-input"
+        >
+          <p
+            className="filter-input-title"
+          >
+            Type of object:
+          </p>
+          <select
+            name="type"
+            onChange={[Function]}
+          >
+            <option
+              value="all"
+            >
+              All
+            </option>
+            <option
+              value="all"
+            >
+              All
+            </option>
+          </select>
+        </div>,
+      ],
+      "className": "filter",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Filters",
+          "className": "filter-title",
+        },
+        "ref": null,
+        "rendered": "Filters",
+        "type": "h2",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <p
+              className="filter-input-title"
+            >
+              Search:
+            </p>,
+            <input
+              onChange={[Function]}
+              type="text"
+            />,
+          ],
+          "className": "filter-input",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Search:",
+              "className": "filter-input-title",
+            },
+            "ref": null,
+            "rendered": "Search:",
+            "type": "p",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "onChange": [Function],
+              "type": "text",
+              "value": undefined,
+            },
+            "ref": [Function],
+            "rendered": null,
+            "type": "input",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <p
+              className="filter-input-title"
+            >
+              Type of object:
+            </p>,
+            <select
+              name="type"
+              onChange={[Function]}
+            >
+              <option
+                value="all"
+              >
+                All
+              </option>
+              <option
+                value="all"
+              >
+                All
+              </option>
+            </select>,
+          ],
+          "className": "filter-input",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Type of object:",
+              "className": "filter-input-title",
+            },
+            "ref": null,
+            "rendered": "Type of object:",
+            "type": "p",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <option
+                  value="all"
+                >
+                  All
+                </option>,
+                Array [
+                  <option
+                    value="all"
+                  >
+                    All
+                  </option>,
+                ],
+              ],
+              "name": "type",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": [Function],
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "All",
+                  "value": "all",
+                },
+                "ref": null,
+                "rendered": "All",
+                "type": "option",
+              },
+              Object {
+                "instance": null,
+                "key": "3445",
+                "nodeType": "host",
+                "props": Object {
+                  "children": "All",
+                  "value": "all",
+                },
+                "ref": null,
+                "rendered": "All",
+                "type": "option",
+              },
+            ],
+            "type": "select",
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
   Symbol(enzyme.__nodes__): Array [
-    undefined,
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h2
+            className="filter-title"
+          >
+            Filters
+          </h2>,
+          <div
+            className="filter-input"
+          >
+            <p
+              className="filter-input-title"
+            >
+              Search:
+            </p>
+            <input
+              onChange={[Function]}
+              type="text"
+            />
+          </div>,
+          <div
+            className="filter-input"
+          >
+            <p
+              className="filter-input-title"
+            >
+              Type of object:
+            </p>
+            <select
+              name="type"
+              onChange={[Function]}
+            >
+              <option
+                value="all"
+              >
+                All
+              </option>
+              <option
+                value="all"
+              >
+                All
+              </option>
+            </select>
+          </div>,
+        ],
+        "className": "filter",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Filters",
+            "className": "filter-title",
+          },
+          "ref": null,
+          "rendered": "Filters",
+          "type": "h2",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <p
+                className="filter-input-title"
+              >
+                Search:
+              </p>,
+              <input
+                onChange={[Function]}
+                type="text"
+              />,
+            ],
+            "className": "filter-input",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Search:",
+                "className": "filter-input-title",
+              },
+              "ref": null,
+              "rendered": "Search:",
+              "type": "p",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "onChange": [Function],
+                "type": "text",
+                "value": undefined,
+              },
+              "ref": [Function],
+              "rendered": null,
+              "type": "input",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <p
+                className="filter-input-title"
+              >
+                Type of object:
+              </p>,
+              <select
+                name="type"
+                onChange={[Function]}
+              >
+                <option
+                  value="all"
+                >
+                  All
+                </option>
+                <option
+                  value="all"
+                >
+                  All
+                </option>
+              </select>,
+            ],
+            "className": "filter-input",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Type of object:",
+                "className": "filter-input-title",
+              },
+              "ref": null,
+              "rendered": "Type of object:",
+              "type": "p",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <option
+                    value="all"
+                  >
+                    All
+                  </option>,
+                  Array [
+                    <option
+                      value="all"
+                    >
+                      All
+                    </option>,
+                  ],
+                ],
+                "name": "type",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": [Function],
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "All",
+                    "value": "all",
+                  },
+                  "ref": null,
+                  "rendered": "All",
+                  "type": "option",
+                },
+                Object {
+                  "instance": null,
+                  "key": "3445",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "All",
+                    "value": "all",
+                  },
+                  "ref": null,
+                  "rendered": "All",
+                  "type": "option",
+                },
+              ],
+              "type": "select",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {

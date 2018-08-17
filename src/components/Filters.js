@@ -12,7 +12,6 @@ class Filters extends Component {
     };
 
     getInput() {
-        console.log('yeay');
         const { filter, setSearchValue, setSelectValue } = this.props;
         const search = this.search.value;
         const select = this.select.value;
