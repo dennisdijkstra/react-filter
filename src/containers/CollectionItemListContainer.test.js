@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow, configure } from 'enzyme';
+import fetch from 'jest-fetch-mock';
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
 import CollectionItemListContainer from './CollectionItemListContainer';
@@ -7,15 +8,21 @@ import CollectionItemListContainer from './CollectionItemListContainer';
 configure({ adapter: new Adapter() });
 
 const mockStore = configureStore();
-let store;
 let props;
+let store;
+let wrapper;
 
 describe('CollectionItemListContainer', () => {
     it('should render correctly', () => {
-        const wrapper = shallow(
-            <CollectionItemListContainer store={store} {...props} />,
-        );
         expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should call fetchData and return succesful', () => {
+        fetch.mockResponseOnce(JSON.stringify({ data: 'all' }));
+
+        wrapper.dive().instance().fetchData().then((response) => {
+            expect(response.data).toEqual('all');
+        });
     });
 
     beforeEach(() => {
@@ -24,6 +31,10 @@ describe('CollectionItemListContainer', () => {
             search: '',
             select: 'all',
         };
+
         store = mockStore(props);
+        wrapper = shallow(
+            <CollectionItemListContainer store={store} {...props} />,
+        );
     });
 });
