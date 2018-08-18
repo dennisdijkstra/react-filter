@@ -52,8 +52,6 @@ class CollectionItemListContainer extends Component {
         setSelectCategories(categories);
     }
 
-    testFunction = () => 'Testing with Jest and Enzyme';
-
     initialFilter = () => {
         const {
             search,
