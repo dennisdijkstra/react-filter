@@ -11,7 +11,7 @@ class Filters extends Component {
         selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
     };
 
-    getInput() {
+    getInput = () => {
         const { filter, setSearchValue, setSelectValue } = this.props;
         const search = this.search.value;
         const select = this.select.value;
@@ -22,6 +22,7 @@ class Filters extends Component {
     }
 
     render() {
+        console.log(this.props);
         const { search, select, selectCategories } = this.props;
 
         return (
