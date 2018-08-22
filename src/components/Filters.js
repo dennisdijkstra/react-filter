@@ -22,7 +22,6 @@ class Filters extends Component {
     }
 
     render() {
-        console.log(this.props);
         const { search, select, selectCategories } = this.props;
 
         return (

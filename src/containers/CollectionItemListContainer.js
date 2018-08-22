@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as Actions from '../datamodel/Filter/actions';
 import fetchData from '../datamodel/CollectionItem/actions';
+import store from '../datamodel/store';
 
 import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
@@ -40,13 +41,22 @@ class CollectionItemListContainer extends Component {
             fetching: true,
         });
 
-        fetchItems().then(() => {
+        fetchItems(this.page).then(() => {
             this.setState({
                 fetching: false,
             });
             this.initialLoad = false;
-            this.initialFilter();
+            this.getFilterValues();
         });
+    }
+
+    getFilterValues = () => {
+        const {
+            search,
+            select,
+        } = this.props;
+
+        this.filter(search.toLowerCase(), select.toLowerCase());
     }
 
     setSelectCategories = (data) => {
@@ -62,15 +72,6 @@ class CollectionItemListContainer extends Component {
         setSelectCategories(categories);
     }
 
-    initialFilter = () => {
-        const {
-            search,
-            select,
-        } = this.props;
-
-        this.filter(search.toLowerCase(), select.toLowerCase());
-    }
-
     filter = (search, select) => {
         const { allCollectionItems } = this.props;
         const searchFiltered = allCollectionItems.filter(item => item.title.toLowerCase().indexOf(search) !== -1);
@@ -82,7 +83,9 @@ class CollectionItemListContainer extends Component {
     }
 
     loadMoreItems = () => {
+        const { fetchData: fetchItems } = this.props;
         this.page = this.page + 1;
+        fetchItems(this.page).then(() => this.getFilterValues());
     }
 
     render() {
