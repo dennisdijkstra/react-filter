@@ -4,11 +4,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as Actions from '../datamodel/Filter/actions';
 import fetchData from '../datamodel/CollectionItem/actions';
-import store from '../datamodel/store';
-
 import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
-
 
 class CollectionItemListContainer extends Component {
     static propTypes = {
