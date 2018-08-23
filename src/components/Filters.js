@@ -17,8 +17,7 @@ class Filters extends Component {
         const select = this.select.value;
 
         setSearchValue(search);
-        setSelectValue(select);
-        filter(search, select);
+        setSelectValue(select).then(() => filter(search, select));
     }
 
     render() {

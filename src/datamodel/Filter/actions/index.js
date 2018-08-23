@@ -8,9 +8,11 @@ const setSearchValue = value => (
 );
 
 const setSelectValue = value => (
-    {
-        type: SET_SELECT_VALUE,
-        value,
+    async (dispatch) => {
+        dispatch({
+            type: SET_SELECT_VALUE,
+            value,
+        });
     }
 );
 
