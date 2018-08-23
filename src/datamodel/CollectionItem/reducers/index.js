@@ -11,4 +11,15 @@ const allCollectionItems = (state = [], action) => {
     return state;
 };
 
-export default allCollectionItems;
+const isFetching = (state = false, action) => {
+    if (action.type === 'REQUEST_ITEMS') {
+        return action.isFetching;
+    }
+
+    if (action.type === 'REQUEST_DONE') {
+        return action.isFetching;
+    }
+    return state;
+};
+
+export { allCollectionItems, isFetching };
