@@ -27,8 +27,6 @@ class CollectionItemListContainer extends Component {
             filteredItems: [],
         };
 
-        this.initialLoad = true;
-        this.results = {};
         this.page = 1;
     }
 
@@ -36,18 +34,8 @@ class CollectionItemListContainer extends Component {
         const { fetchData: fetchItems } = this.props;
 
         fetchItems(this.page).then(() => {
-            this.initialLoad = false;
-            this.getFilterValues();
+            this.filter();
         });
-    }
-
-    getFilterValues = () => {
-        const {
-            search,
-            select,
-        } = this.props;
-
-        this.filter(search.toLowerCase(), select.toLowerCase());
     }
 
     setSelectCategories = (data) => {
@@ -56,17 +44,26 @@ class CollectionItemListContainer extends Component {
 
         data.forEach((item) => {
             if (!categories.filter(categorie => (categorie.type === item.type)).length) {
-                categories.push({ id: Math.random().toString(36).substr(2, 7), type: item.type });
+                categories.push({
+                    id: Math.random().toString(36).substr(2, 7),
+                    type: item.type,
+                });
             }
         });
 
         setSelectCategories(categories);
     }
 
-    filter = (search, select) => {
-        const { allCollectionItems } = this.props;
-        const searchFiltered = allCollectionItems.filter(item => item.title.toLowerCase().indexOf(search) !== -1);
-        const searchAndSelectFiltered = select === 'all' ? searchFiltered : searchFiltered.filter(item => item.type.toLowerCase() === select);
+    filter = () => {
+        const { allCollectionItems, search, select } = this.props;
+        const searchFiltered = allCollectionItems.filter(
+            item => item.title.toLowerCase().indexOf(search.toLowerCase()) !== -1,
+        );
+        const searchAndSelectFiltered = select === 'all'
+            ? searchFiltered
+            : searchFiltered.filter(
+                item => item.type.toLowerCase() === select.toLowerCase(),
+            );
 
         this.setState({
             filteredItems: searchAndSelectFiltered,
@@ -76,7 +73,7 @@ class CollectionItemListContainer extends Component {
     loadMoreItems = () => {
         const { fetchData: fetchItems } = this.props;
         this.page = this.page + 1;
-        fetchItems(this.page).then(() => this.getFilterValues());
+        fetchItems(this.page).then(() => this.filter());
     }
 
     render() {
