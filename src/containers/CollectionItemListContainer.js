@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as Actions from '../datamodel/Filter/actions';
-import fetchData from '../datamodel/CollectionItem/actions';
+import { fetchData } from '../datamodel/CollectionItem/actions';
 import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
 
 class CollectionItemListContainer extends Component {
     static propTypes = {
+        isFetching: PropTypes.bool.isRequired,
         search: PropTypes.string.isRequired,
         select: PropTypes.string.isRequired,
         selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -24,7 +25,6 @@ class CollectionItemListContainer extends Component {
 
         this.state = {
             filteredItems: [],
-            fetching: false,
         };
 
         this.initialLoad = true;
@@ -34,14 +34,8 @@ class CollectionItemListContainer extends Component {
 
     componentDidMount() {
         const { fetchData: fetchItems } = this.props;
-        this.setState({
-            fetching: true,
-        });
 
         fetchItems(this.page).then(() => {
-            this.setState({
-                fetching: false,
-            });
             this.initialLoad = false;
             this.getFilterValues();
         });
@@ -88,10 +82,10 @@ class CollectionItemListContainer extends Component {
     render() {
         const {
             filteredItems,
-            fetching,
         } = this.state;
 
         const {
+            isFetching,
             search,
             select,
             setSearchValue,
@@ -110,7 +104,7 @@ class CollectionItemListContainer extends Component {
                     selectCategories={selectCategories}
                 />
                 <CollectionItemList
-                    fetching={fetching}
+                    isFetching={isFetching}
                     filteredItems={filteredItems}
                     loadMoreItems={this.loadMoreItems}
                 />
@@ -120,6 +114,7 @@ class CollectionItemListContainer extends Component {
 }
 
 const mapStateToProps = state => ({
+    isFetching: state.isFetching,
     search: state.search,
     select: state.select,
     selectCategories: state.selectCategories,

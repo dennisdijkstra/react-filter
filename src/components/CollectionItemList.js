@@ -4,12 +4,12 @@ import CollectionItem from './CollectionItem';
 
 
 const CollectionItemList = (props) => {
-    const { fetching, filteredItems, loadMoreItems } = props;
+    const { isFetching, filteredItems, loadMoreItems } = props;
 
     return (
         <div className="content">
             <div className="exhibition-list-items">
-                { fetching ? (
+                { isFetching ? (
                     <div className="spinner">
                         <div className="bounce1" />
                         <div className="bounce2" />
@@ -20,7 +20,7 @@ const CollectionItemList = (props) => {
                     <CollectionItem key={collectionItem.id} collectionItem={collectionItem} />
                 ))}
             </div>
-            { fetching ? (null) : (
+            { isFetching ? (null) : (
                 <button className="exhibition-list-load-more" onClick={loadMoreItems} type="button">Load more</button>
             )}
         </div>
@@ -30,7 +30,7 @@ const CollectionItemList = (props) => {
 export default CollectionItemList;
 
 CollectionItemList.propTypes = {
-    fetching: PropTypes.bool.isRequired,
+    isFetching: PropTypes.bool.isRequired,
     filteredItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     loadMoreItems: PropTypes.func.isRequired,
 };
