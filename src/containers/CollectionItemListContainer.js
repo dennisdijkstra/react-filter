@@ -44,7 +44,10 @@ class CollectionItemListContainer extends Component {
 
         data.forEach((item) => {
             if (!categories.filter(categorie => (categorie.type === item.type)).length) {
-                categories.push({ id: Math.random().toString(36).substr(2, 7), type: item.type });
+                categories.push({
+                    id: Math.random().toString(36).substr(2, 7),
+                    type: item.type,
+                });
             }
         });
 
@@ -53,8 +56,14 @@ class CollectionItemListContainer extends Component {
 
     filter = () => {
         const { allCollectionItems, search, select } = this.props;
-        const searchFiltered = allCollectionItems.filter(item => item.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
-        const searchAndSelectFiltered = select === 'all' ? searchFiltered : searchFiltered.filter(item => item.type.toLowerCase() === select.toLowerCase());
+        const searchFiltered = allCollectionItems.filter(
+            item => item.title.toLowerCase().indexOf(search.toLowerCase()) !== -1,
+        );
+        const searchAndSelectFiltered = select === 'all'
+            ? searchFiltered
+            : searchFiltered.filter(
+                item => item.type.toLowerCase() === select.toLowerCase(),
+            );
 
         this.setState({
             filteredItems: searchAndSelectFiltered,
