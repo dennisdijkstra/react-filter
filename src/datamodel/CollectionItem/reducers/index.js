@@ -1,4 +1,9 @@
-import { RECEIVED_ITEMS, LOAD_MORE_ITEMS } from '../../constants/action-types';
+import {
+    RECEIVED_ITEMS,
+    REQUEST_ITEMS,
+    REQUEST_DONE,
+    LOAD_MORE_ITEMS,
+} from '../../constants/action-types';
 
 const allCollectionItems = (state = [], action) => {
     if (action.type === RECEIVED_ITEMS) {
@@ -12,11 +17,11 @@ const allCollectionItems = (state = [], action) => {
 };
 
 const isFetching = (state = false, action) => {
-    if (action.type === 'REQUEST_ITEMS') {
+    if (action.type === REQUEST_ITEMS) {
         return action.isFetching;
     }
 
-    if (action.type === 'REQUEST_DONE') {
+    if (action.type === REQUEST_DONE) {
         return action.isFetching;
     }
     return state;

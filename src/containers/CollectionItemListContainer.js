@@ -6,7 +6,6 @@ import * as Actions from '../datamodel/Filter/actions';
 import { fetchData } from '../datamodel/CollectionItem/actions';
 import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
-import store from '../datamodel/store';
 
 class CollectionItemListContainer extends Component {
     static propTypes = {
