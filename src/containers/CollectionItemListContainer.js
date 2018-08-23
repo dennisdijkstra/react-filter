@@ -73,7 +73,7 @@ class CollectionItemListContainer extends Component {
     loadMoreItems = () => {
         const { fetchData: fetchItems } = this.props;
         this.page = this.page + 1;
-        fetchItems(this.page).then(() => this.getFilterValues());
+        fetchItems(this.page).then(() => this.filter());
     }
 
     render() {
