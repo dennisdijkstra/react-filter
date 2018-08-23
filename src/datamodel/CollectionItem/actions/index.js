@@ -1,14 +1,13 @@
 import {
+    IS_FETCHING,
     RECEIVED_ITEMS,
-    REQUEST_ITEMS,
     REQUEST_ERROR,
-    REQUEST_DONE,
     LOAD_MORE_ITEMS,
 } from '../../constants/action-types';
 
 const requestItems = () => (
     {
-        type: REQUEST_ITEMS,
+        type: IS_FETCHING,
         isFetching: true,
     }
 );
@@ -28,7 +27,7 @@ const receiveError = () => (
 
 const requestDone = () => (
     {
-        type: REQUEST_DONE,
+        type: IS_FETCHING,
         isFetching: false,
     }
 );
