@@ -34,7 +34,8 @@ const fetchData = page => (dispatch) => {
         .then((items) => {
             dispatch(receiveItems(page, items));
             dispatch(requestDone());
-        });
+        })
+        .catch(() => dispatch(receiveError()));
 };
 
 export {
