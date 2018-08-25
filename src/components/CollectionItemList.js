@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CollectionItem from './CollectionItem';
+import Spinner from './Spinner';
 
 
 const CollectionItemList = (props) => {
@@ -10,19 +11,19 @@ const CollectionItemList = (props) => {
         <div className="content">
             <div className="exhibition-list-items">
                 { isFetching ? (
-                    <div className="spinner">
-                        <div className="bounce1" />
-                        <div className="bounce2" />
-                        <div className="bounce3" />
-                    </div>
+                    <Spinner />
                 ) : (null) }
                 {filteredItems.map(collectionItem => (
                     <CollectionItem key={collectionItem.id} collectionItem={collectionItem} />
                 ))}
             </div>
-            { isFetching ? (null) : (
-                <button className="exhibition-list-load-more" onClick={loadMoreItems} type="button">Load more</button>
-            )}
+            <button
+                className="exhibition-list-load-more"
+                onClick={loadMoreItems}
+                type="button"
+            >
+                { isFetching ? 'Loading' : 'Load more' }
+            </button>
         </div>
     );
 };

@@ -15,6 +15,7 @@ let props;
 let wrapper;
 let store;
 let mockLoadMore;
+let mockFilter;
 
 describe('CollectionItemListContainer', () => {
     it('should render correctly', () => {
@@ -46,13 +47,16 @@ describe('CollectionItemListContainer', () => {
             { objects: [{ id: '18732757', text: 'test', images: ['1', '2'] }] },
         ));
 
-        wrapper = shallow(
+        wrapper = mount(
             <CollectionItemListContainer store={store} {...props} />,
-        ).dive();
+        );
 
         mockLoadMore = jest.spyOn(wrapper.instance(), 'loadMoreItems').mockImplementation(() => true);
+        mockFilter = jest.spyOn(wrapper.instance(), 'filter').mockImplementation(() => true);
         wrapper.instance().loadMoreItems();
         expect(mockLoadMore).toHaveBeenCalledTimes(1);
+        wrapper.instance().forceUpdate();
+        expect(mockFilter).toHaveBeenCalledTimes(1);
     });
 
     beforeEach(() => {
