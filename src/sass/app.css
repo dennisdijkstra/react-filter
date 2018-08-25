@@ -36,10 +36,10 @@ a {
   text-decoration: none; }
 
 .spinner {
+  position: absolute;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%; }
+  justify-content: center; }
 
 .spinner > div {
   display: inline-block;
@@ -990,14 +990,18 @@ button:focus {
   width: 100%; }
 
 .exhibition-list-load-more {
-  display: block;
-  width: 150px;
-  padding: 10px;
-  margin: 48px auto 24px;
-  font-weight: 600;
-  cursor: pointer;
-  background-color: #fff;
-  border: none; }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 60px 0; }
+  .exhibition-list-load-more-button {
+    display: block;
+    width: 150px;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #fff;
+    border: none; }
 
 .filter {
   width: 200px;

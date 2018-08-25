@@ -17,13 +17,18 @@ const CollectionItemList = (props) => {
                     <CollectionItem key={collectionItem.id} collectionItem={collectionItem} />
                 ))}
             </div>
-            <button
-                className="exhibition-list-load-more"
-                onClick={loadMoreItems}
-                type="button"
-            >
-                { isFetching ? 'Loading' : 'Load more' }
-            </button>
+            <div className="exhibition-list-load-more">
+                <button
+                    className="exhibition-list-load-more-button"
+                    onClick={loadMoreItems}
+                    type="button"
+                >
+                Load more
+                </button>
+                { isFetching ? (
+                    <Spinner />
+                ) : null }
+            </div>
         </div>
     );
 };
