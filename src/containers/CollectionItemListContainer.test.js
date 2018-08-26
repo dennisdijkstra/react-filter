@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, configure } from 'enzyme';
+import { shallow, mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -14,9 +14,15 @@ const mockStore = configureStore(middlewares);
 let props;
 let wrapper;
 let store;
+let mockLoadMore;
+let mockFilter;
 
 describe('CollectionItemListContainer', () => {
     it('should render correctly', () => {
+        wrapper = shallow(
+            <CollectionItemListContainer store={store} {...props} />,
+        ).dive();
+
         expect(wrapper).toMatchSnapshot();
     });
 
@@ -36,6 +42,23 @@ describe('CollectionItemListContainer', () => {
         });
     });
 
+    it('loadMoreItems method should be called', () => {
+        global.fetch.mockResponse(JSON.stringify(
+            { objects: [{ id: '18732757', text: 'test', images: ['1', '2'] }] },
+        ));
+
+        wrapper = mount(
+            <CollectionItemListContainer store={store} {...props} />,
+        );
+
+        mockLoadMore = jest.spyOn(wrapper.instance(), 'loadMoreItems').mockImplementation(() => true);
+        mockFilter = jest.spyOn(wrapper.instance(), 'filter').mockImplementation(() => true);
+        wrapper.instance().loadMoreItems();
+        expect(mockLoadMore).toHaveBeenCalledTimes(1);
+        wrapper.instance().forceUpdate();
+        expect(mockFilter).toHaveBeenCalledTimes(1);
+    });
+
     beforeEach(() => {
         props = {
             allCollectionItems: [],
@@ -45,9 +68,6 @@ describe('CollectionItemListContainer', () => {
             select: 'all',
         };
         store = mockStore(props);
-        wrapper = shallow(
-            <CollectionItemListContainer store={store} {...props} />,
-        );
     });
 
     afterEach(() => {

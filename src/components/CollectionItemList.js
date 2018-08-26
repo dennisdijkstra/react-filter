@@ -1,28 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CollectionItem from './CollectionItem';
+import Spinner from './Spinner';
 
 
 const CollectionItemList = (props) => {
-    const { isFetching, filteredItems, loadMoreItems } = props;
+    const {
+        isFetching,
+        initialLoad,
+        filteredItems,
+        loadMoreItems,
+    } = props;
 
     return (
         <div className="content">
             <div className="exhibition-list-items">
-                { isFetching ? (
-                    <div className="spinner">
-                        <div className="bounce1" />
-                        <div className="bounce2" />
-                        <div className="bounce3" />
-                    </div>
-                ) : (null) }
+                { isFetching ? <Spinner /> : null }
                 {filteredItems.map(collectionItem => (
                     <CollectionItem key={collectionItem.id} collectionItem={collectionItem} />
                 ))}
             </div>
-            { isFetching ? (null) : (
-                <button className="exhibition-list-load-more" onClick={loadMoreItems} type="button">Load more</button>
-            )}
+            { !initialLoad ? (
+                <div className="exhibition-list-load-more">
+                    <button
+                        className="exhibition-list-load-more-button"
+                        onClick={loadMoreItems}
+                        type="button"
+                    >
+                        { isFetching ? '' : 'Load more' }
+                    </button>
+                    { !initialLoad && isFetching ? <Spinner /> : null }
+                </div>
+            ) : (null)}
         </div>
     );
 };
@@ -31,6 +40,7 @@ export default CollectionItemList;
 
 CollectionItemList.propTypes = {
     isFetching: PropTypes.bool.isRequired,
+    initialLoad: PropTypes.bool.isRequired,
     filteredItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     loadMoreItems: PropTypes.func.isRequired,
 };
