@@ -19,11 +19,21 @@
         &-button {
             display: block;
             width: 150px;
+            height: 35px;
             padding: 10px;
             font-weight: 600;
             cursor: pointer;
             background-color: #fff;
             border: none;
+        }
+
+        .spinner {
+            position: absolute;
+
+            & > div {
+                width: 12px;
+                height: 12px;
+            }
         }
     }
 }

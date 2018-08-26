@@ -36,7 +36,6 @@ a {
   text-decoration: none; }
 
 .spinner {
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -997,11 +996,17 @@ button:focus {
   .exhibition-list-load-more-button {
     display: block;
     width: 150px;
+    height: 35px;
     padding: 10px;
     font-weight: 600;
     cursor: pointer;
     background-color: #fff;
     border: none; }
+  .exhibition-list-load-more .spinner {
+    position: absolute; }
+    .exhibition-list-load-more .spinner > div {
+      width: 12px;
+      height: 12px; }
 
 .filter {
   width: 200px;

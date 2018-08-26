@@ -25,6 +25,7 @@ class CollectionItemListContainer extends Component {
 
         this.state = {
             filteredItems: [],
+            initialLoad: true,
         };
 
         this.page = 1;
@@ -35,6 +36,9 @@ class CollectionItemListContainer extends Component {
 
         fetchItems(this.page).then(() => {
             this.filter();
+            this.setState({
+                initialLoad: false,
+            });
         });
     }
 
@@ -79,6 +83,7 @@ class CollectionItemListContainer extends Component {
     render() {
         const {
             filteredItems,
+            initialLoad,
         } = this.state;
 
         const {
@@ -102,6 +107,7 @@ class CollectionItemListContainer extends Component {
                 />
                 <CollectionItemList
                     isFetching={isFetching}
+                    initialLoad={initialLoad}
                     filteredItems={filteredItems}
                     loadMoreItems={this.loadMoreItems}
                 />
