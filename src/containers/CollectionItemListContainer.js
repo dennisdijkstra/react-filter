@@ -10,14 +10,15 @@ import Filters from '../components/Filters';
 class CollectionItemListContainer extends Component {
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
-        search: PropTypes.string.isRequired,
-        select: PropTypes.string.isRequired,
-        selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
-        allCollectionItems: PropTypes.arrayOf(PropTypes.object).isRequired,
-        setSearchValue: PropTypes.func.isRequired,
-        setSelectValue: PropTypes.func.isRequired,
+        setInputValue: PropTypes.func.isRequired,
         setSelectCategories: PropTypes.func.isRequired,
         fetchData: PropTypes.func.isRequired,
+        form: PropTypes.shape({
+            search: PropTypes.string,
+            select: PropTypes.string,
+        }).isRequired,
+        selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
+        allCollectionItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     };
 
     constructor(props) {
@@ -47,10 +48,10 @@ class CollectionItemListContainer extends Component {
         const { setSelectCategories } = this.props;
 
         data.forEach((item) => {
-            if (!categories.filter(categorie => (categorie.type === item.type)).length) {
+            if (!categories.filter(categorie => (categorie.type === item.type.toLowerCase())).length) {
                 categories.push({
                     id: Math.random().toString(36).substr(2, 7),
-                    type: item.type,
+                    type: item.type.toLowerCase(),
                 });
             }
         });
@@ -59,19 +60,17 @@ class CollectionItemListContainer extends Component {
     }
 
     filter = () => {
-        const { allCollectionItems, search, select } = this.props;
-        const searchFiltered = allCollectionItems.filter(
-            item => item.title.toLowerCase().indexOf(search.toLowerCase()) !== -1,
-        );
-        const searchAndSelectFiltered = select === 'all'
-            ? searchFiltered
-            : searchFiltered.filter(
-                item => item.type.toLowerCase() === select.toLowerCase(),
-            );
+        const { allCollectionItems, form } = this.props;
+        const { search, select } = form;
+        const filteredItems = select === 'all'
+            ? allCollectionItems.filter(item => item.title.toLowerCase().indexOf(search) !== -1)
+            : allCollectionItems
+                .filter(item => item.title.toLowerCase().indexOf(search) !== -1)
+                .filter(item => item.type.toLowerCase() === select);
 
         this.setState({
-            filteredItems: searchAndSelectFiltered,
-        }, this.setSelectCategories(searchAndSelectFiltered));
+            filteredItems,
+        }, this.setSelectCategories(filteredItems));
     }
 
     loadMoreItems = () => {
@@ -88,20 +87,16 @@ class CollectionItemListContainer extends Component {
 
         const {
             isFetching,
-            search,
-            select,
-            setSearchValue,
-            setSelectValue,
+            form,
+            setInputValue,
             selectCategories,
         } = this.props;
 
         return (
             <div className="container">
                 <Filters
-                    search={search}
-                    select={select}
-                    setSearchValue={setSearchValue}
-                    setSelectValue={setSelectValue}
+                    form={form}
+                    setInputValue={setInputValue}
                     filter={this.filter}
                     selectCategories={selectCategories}
                 />
@@ -118,8 +113,7 @@ class CollectionItemListContainer extends Component {
 
 const mapStateToProps = state => ({
     isFetching: state.isFetching,
-    search: state.search,
-    select: state.select,
+    form: state.form,
     selectCategories: state.selectCategories,
     allCollectionItems: state.allCollectionItems,
 });

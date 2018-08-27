@@ -3,14 +3,14 @@ import * as types from '../../constants/action-types';
 const requestItems = () => (
     {
         type: types.IS_FETCHING,
-        isFetching: true,
+        payload: true,
     }
 );
 
 const receiveItems = (page, items) => (
     {
         type: page === 1 ? types.RECEIVED_ITEMS : types.LOAD_MORE_ITEMS,
-        items: items.objects.filter(result => result.images[0]),
+        payload: items.objects.filter(result => result.images[0]),
     }
 );
 
@@ -23,7 +23,7 @@ const receiveError = () => (
 const requestDone = () => (
     {
         type: types.IS_FETCHING,
-        isFetching: false,
+        payload: false,
     }
 );
 

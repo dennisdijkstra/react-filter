@@ -1,17 +1,11 @@
 import * as types from '../../constants/action-types';
 
-const setSearchValue = value => (
-    {
-        type: types.SET_SEARCH_VALUE,
-        value,
-    }
-);
-
-const setSelectValue = value => (
+const setInputValue = (name, value) => (
     async (dispatch) => {
         dispatch({
-            type: types.SET_SELECT_VALUE,
-            value,
+            type: types.SET_INPUT_VALUE,
+            payload: value,
+            name,
         });
     }
 );
@@ -19,12 +13,11 @@ const setSelectValue = value => (
 const setSelectCategories = value => (
     {
         type: types.SET_SELECT_CATEGORIES,
-        categories: value,
+        payload: value,
     }
 );
 
 export {
-    setSelectValue,
-    setSearchValue,
+    setInputValue,
     setSelectCategories,
 };

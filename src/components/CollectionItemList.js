@@ -15,7 +15,7 @@ const CollectionItemList = (props) => {
     return (
         <div className="content">
             <div className="exhibition-list-items">
-                { isFetching ? <Spinner /> : null }
+                { isFetching && initialLoad ? <Spinner /> : null }
                 {filteredItems.map(collectionItem => (
                     <CollectionItem key={collectionItem.id} collectionItem={collectionItem} />
                 ))}
@@ -29,7 +29,7 @@ const CollectionItemList = (props) => {
                     >
                         { isFetching ? '' : 'Load more' }
                     </button>
-                    { !initialLoad && isFetching ? <Spinner /> : null }
+                    { isFetching && !initialLoad ? <Spinner /> : null }
                 </div>
             ) : (null)}
         </div>
