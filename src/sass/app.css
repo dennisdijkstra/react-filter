@@ -952,8 +952,12 @@ button:focus {
   position: relative;
   padding: 20px;
   background-color: #fff; }
-  .exhibition-list-item-title {
-    font-size: 14px; }
+  .exhibition-list-item-title, .exhibition-list-item-year {
+    margin-bottom: 2px;
+    font-size: 14px;
+    line-height: 16px; }
+  .exhibition-list-item-year {
+    font-weight: normal; }
   .exhibition-list-item-image {
     width: 100%;
     height: 300px;
@@ -1005,8 +1009,8 @@ button:focus {
   .exhibition-list-load-more .spinner {
     position: absolute; }
     .exhibition-list-load-more .spinner > div {
-      width: 12px;
-      height: 12px; }
+      width: 10px;
+      height: 10px; }
 
 .filter {
   width: 200px;
