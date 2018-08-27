@@ -31,11 +31,11 @@ class Filters extends Component {
                 <form>
                     <div className="filter-input">
                         <p className="filter-input-title">Search:</p>
-                        <input name="search" type="text" onChange={this.getInput} value={search} ref={(input => this.search = input)} />
+                        <input name="search" type="text" onChange={this.getInput} value={search} />
                     </div>
                     <div className="filter-input">
                         <p className="filter-input-title">Type of object:</p>
-                        <select name="select" onChange={this.getInput} value={select} ref={(input => this.select = input)}>
+                        <select name="select" onChange={this.getInput} value={select}>
                             <option value="all">All</option>
                             {selectCategories.map(category => (
                                 <option

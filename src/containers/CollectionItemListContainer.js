@@ -48,10 +48,10 @@ class CollectionItemListContainer extends Component {
         const { setSelectCategories } = this.props;
 
         data.forEach((item) => {
-            if (!categories.filter(categorie => (categorie.type === item.type)).length) {
+            if (!categories.filter(categorie => (categorie.type === item.type.toLowerCase())).length) {
                 categories.push({
                     id: Math.random().toString(36).substr(2, 7),
-                    type: item.type,
+                    type: item.type.toLowerCase(),
                 });
             }
         });
