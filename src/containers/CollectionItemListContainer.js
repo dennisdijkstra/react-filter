@@ -62,18 +62,15 @@ class CollectionItemListContainer extends Component {
     filter = () => {
         const { allCollectionItems, form } = this.props;
         const { search, select } = form;
-        const searchFiltered = allCollectionItems.filter(
-            item => item.title.toLowerCase().indexOf(search) !== -1,
-        );
-        const searchAndSelectFiltered = select === 'all'
-            ? searchFiltered
-            : searchFiltered.filter(
-                item => item.type.toLowerCase() === select,
-            );
+        const filteredItems = select === 'all'
+            ? allCollectionItems.filter(item => item.title.toLowerCase().indexOf(search) !== -1)
+            : allCollectionItems
+                .filter(item => item.title.toLowerCase().indexOf(search) !== -1)
+                .filter(item => item.type.toLowerCase() === select);
 
         this.setState({
-            filteredItems: searchAndSelectFiltered,
-        }, this.setSelectCategories(searchAndSelectFiltered));
+            filteredItems,
+        }, this.setSelectCategories(filteredItems));
     }
 
     loadMoreItems = () => {

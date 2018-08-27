@@ -28,24 +28,26 @@ class Filters extends Component {
         return (
             <div className="filter">
                 <h2 className="filter-title">Filters</h2>
-                <div className="filter-input">
-                    <p className="filter-input-title">Search:</p>
-                    <input name="search" type="text" onChange={this.getInput} value={search} ref={(input => this.search = input)} />
-                </div>
-                <div className="filter-input">
-                    <p className="filter-input-title">Type of object:</p>
-                    <select name="select" onChange={this.getInput} value={select} ref={(input => this.select = input)}>
-                        <option value="all">All</option>
-                        {selectCategories.map(category => (
-                            <option
-                                key={category.id}
-                                value={category.type}
-                            >
-                                {category.type.charAt(0).toUpperCase() + category.type.slice(1)}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <form>
+                    <div className="filter-input">
+                        <p className="filter-input-title">Search:</p>
+                        <input name="search" type="text" onChange={this.getInput} value={search} ref={(input => this.search = input)} />
+                    </div>
+                    <div className="filter-input">
+                        <p className="filter-input-title">Type of object:</p>
+                        <select name="select" onChange={this.getInput} value={select} ref={(input => this.select = input)}>
+                            <option value="all">All</option>
+                            {selectCategories.map(category => (
+                                <option
+                                    key={category.id}
+                                    value={category.type}
+                                >
+                                    {category.type.charAt(0).toUpperCase() + category.type.slice(1)}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </form>
             </div>
         );
     }
