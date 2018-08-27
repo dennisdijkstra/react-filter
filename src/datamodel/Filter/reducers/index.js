@@ -1,22 +1,15 @@
 import * as types from '../../constants/action-types';
 
-export const search = (state = '', action) => {
-    if (action.type === types.SET_SEARCH_VALUE) {
-        return action.value;
-    }
-    return state;
-};
-
-export const select = (state = 'all', action) => {
-    if (action.type === types.SET_SELECT_VALUE) {
-        return action.value;
+export const form = (state = { search: '', select: 'all' }, action) => {
+    if (action.type === types.SET_INPUT_VALUE) {
+        return { ...state, [action.name]: action.payload };
     }
     return state;
 };
 
 export const selectCategories = (state = [], action) => {
     if (action.type === types.SET_SELECT_CATEGORIES) {
-        return action.categories;
+        return action.payload;
     }
     return state;
 };
