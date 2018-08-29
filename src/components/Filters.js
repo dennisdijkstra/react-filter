@@ -1,56 +1,57 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
 
-class Filters extends Component {
-    static propTypes = {
-        form: PropTypes.shape({
-            search: PropTypes.string,
-            select: PropTypes.string,
-        }).isRequired,
-        setInputValue: PropTypes.func.isRequired,
-        filter: PropTypes.func.isRequired,
-        selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
+const Filters = (props) => {
+    const { selectCategories, initialValues, filter } = props;
+    const { search, select } = initialValues;
+
+    const filterItems = () => {
+        filter();
     };
 
-    getInput = (e) => {
-        const { filter, setInputValue } = this.props;
-        const curr = e.currentTarget;
-        const name = curr.name;
-        const value = curr.value.toLowerCase();
+    return (
+        <div className="filter">
+            <h2 className="filter-title">Filters</h2>
+            <form>
+                <div className="filter-input">
+                    <p className="filter-input-title">Search:</p>
+                    <Field
+                        name="search"
+                        component="input"
+                        value={search}
+                        type="text"
+                        onChange={filterItems}
+                    />
+                </div>
+                <div className="filter-input">
+                    <p className="filter-input-title">Type of object:</p>
+                    <Field name="select" component="select" value={select} onChange={filterItems}>
+                        <option value="all">All</option>
+                        {selectCategories.map(category => (
+                            <option
+                                key={category.id}
+                                value={category.type}
+                            >
+                                {category.type.charAt(0).toUpperCase() + category.type.slice(1)}
+                            </option>
+                        ))}
+                    </Field>
+                </div>
+            </form>
+        </div>
+    );
+};
 
-        setInputValue(name, value).then(() => filter());
-    }
+export default reduxForm({
+    form: 'filters',
+})(Filters);
 
-    render() {
-        const { form, selectCategories } = this.props;
-        const { search, select } = form;
-
-        return (
-            <div className="filter">
-                <h2 className="filter-title">Filters</h2>
-                <form>
-                    <div className="filter-input">
-                        <p className="filter-input-title">Search:</p>
-                        <input name="search" type="text" onChange={this.getInput} value={search} />
-                    </div>
-                    <div className="filter-input">
-                        <p className="filter-input-title">Type of object:</p>
-                        <select name="select" onChange={this.getInput} value={select}>
-                            <option value="all">All</option>
-                            {selectCategories.map(category => (
-                                <option
-                                    key={category.id}
-                                    value={category.type}
-                                >
-                                    {category.type.charAt(0).toUpperCase() + category.type.slice(1)}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                </form>
-            </div>
-        );
-    }
-}
-
-export default Filters;
+Filters.propTypes = {
+    selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
+    filter: PropTypes.func.isRequired,
+    initialValues: PropTypes.shape({
+        search: PropTypes.string.isRequired,
+        select: PropTypes.string.isRequired,
+    }).isRequired,
+};
