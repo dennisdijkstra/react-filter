@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
-import { form, selectCategories } from './Filter/reducers';
+import { reducer as formReducer } from 'redux-form';
+import { selectCategories } from './Filter/reducers';
 import { allCollectionItems, isFetching } from './CollectionItem/reducers';
 
 export default combineReducers({
     isFetching,
-    form,
     selectCategories,
     allCollectionItems,
+    form: formReducer,
 });

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import * as Actions from '../datamodel/Filter/actions';
+import setSelectCategories from '../datamodel/Filter/actions';
 import { fetchData } from '../datamodel/CollectionItem/actions';
 import CollectionItemList from '../components/CollectionItemList';
 import Filters from '../components/Filters';
@@ -10,12 +10,19 @@ import Filters from '../components/Filters';
 class CollectionItemListContainer extends Component {
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
-        setInputValue: PropTypes.func.isRequired,
         setSelectCategories: PropTypes.func.isRequired,
         fetchData: PropTypes.func.isRequired,
+        initialValues: PropTypes.shape({
+            search: PropTypes.string.isRequired,
+            select: PropTypes.string.isRequired,
+        }).isRequired,
         form: PropTypes.shape({
-            search: PropTypes.string,
-            select: PropTypes.string,
+            filters: PropTypes.shape({
+                values: PropTypes.shape({
+                    search: PropTypes.string.isRequired,
+                    select: PropTypes.string.isRequired,
+                }),
+            }),
         }).isRequired,
         selectCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
         allCollectionItems: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -45,7 +52,7 @@ class CollectionItemListContainer extends Component {
 
     setSelectCategories = (data) => {
         const categories = [];
-        const { setSelectCategories } = this.props;
+        const { setSelectCategories: setSelect } = this.props;
 
         data.forEach((item) => {
             if (!categories.filter(categorie => (categorie.type === item.type.toLowerCase())).length) {
@@ -56,12 +63,12 @@ class CollectionItemListContainer extends Component {
             }
         });
 
-        setSelectCategories(categories);
+        setSelect(categories);
     }
 
     filter = () => {
         const { allCollectionItems, form } = this.props;
-        const { search, select } = form;
+        const { search, select } = form.filters.values;
         const filteredItems = select === 'all'
             ? allCollectionItems.filter(item => item.title.toLowerCase().indexOf(search) !== -1)
             : allCollectionItems
@@ -87,16 +94,14 @@ class CollectionItemListContainer extends Component {
 
         const {
             isFetching,
-            form,
-            setInputValue,
+            initialValues,
             selectCategories,
         } = this.props;
 
         return (
             <div className="container">
                 <Filters
-                    form={form}
-                    setInputValue={setInputValue}
+                    initialValues={initialValues}
                     filter={this.filter}
                     selectCategories={selectCategories}
                 />
@@ -113,12 +118,16 @@ class CollectionItemListContainer extends Component {
 
 const mapStateToProps = state => ({
     isFetching: state.isFetching,
-    form: state.form,
     selectCategories: state.selectCategories,
     allCollectionItems: state.allCollectionItems,
+    form: state.form,
+    initialValues: {
+        search: '',
+        select: 'all',
+    },
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...Actions, fetchData }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ setSelectCategories, fetchData }, dispatch);
 
 export default connect(
     mapStateToProps,
