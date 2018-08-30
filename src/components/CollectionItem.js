@@ -8,13 +8,16 @@ const CollectionItem = ({ collectionItem }) => {
     const titleRaw = collectionItem.title_raw || 'No title';
 
     return (
-        <div className="exhibition-list-item">
-            <Link to={id}>
+        <Link to={id}>
+            <div className="exhibition-list-item">
                 <img src={images[0].b.url} className="exhibition-list-item-image" alt={titleRaw} />
                 <p className="exhibition-list-item-title">{titleRaw}</p>
                 <p className="exhibition-list-item-year">{year}</p>
-            </Link>
-        </div>
+                <div className="exhibition-list-item-overlay">
+                    <p className="exhibition-list-item-overlay-text">More info</p>
+                </div>
+            </div>
+        </Link>
     );
 };
 

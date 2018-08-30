@@ -7,7 +7,7 @@ const Filters = (props) => {
     const { search, select } = initialValues;
 
     const filterItems = () => {
-        filter();
+        setTimeout(() => filter(), 0);
     };
 
     return (
