@@ -10,15 +10,14 @@ import {
 import store from './datamodel/store';
 import CollectionItemListContainer from './containers/CollectionItemListContainer';
 import CollectionItemDetailContainer from './containers/CollectionItemDetailContainer';
+import Header from './components/Header';
 
 
 const App = () => (
     <Provider store={store}>
         <Router>
             <div className="app">
-                <div className="header">
-                    <h1 className="exhibition-list-title">Cooper Hewitt Typography Objects</h1>
-                </div>
+                <Header />
                 <Switch>
                     <Route exact path="/" render={props => <CollectionItemListContainer {...props} />} />
                     <Route path="/:id" component={CollectionItemDetailContainer} />
