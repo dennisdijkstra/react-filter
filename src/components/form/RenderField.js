@@ -4,15 +4,15 @@ const renderField = ({
     input,
     label,
     type,
-    meta: { touched, error, warning },
+    meta: { error },
 }) => (
     <div>
         <label className="form-label">{label}</label>
         <div>
             <input {...input} type={type} />
-            {touched
-                && ((error && <span className="error">{error}</span>)
-                    || (warning && <span className="error">{warning}</span>))}
+            {error
+                && (<span className="error">{error}</span>)
+            }
         </div>
     </div>
 );

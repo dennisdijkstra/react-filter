@@ -7,23 +7,18 @@ import {
     reset,
 } from 'redux-form';
 import RenderField from './form/RenderField';
+import validate from './form/Validate';
 
-const submit = (values, dispatch) => {
-    if (!values.username) {
-        throw new SubmissionError({
-            username: 'This field is required',
-            _error: 'Login failed!',
-        });
-    } else if (!values.password) {
-        throw new SubmissionError({
-            password: 'This field is required',
-            _error: 'Login failed!',
-        });
+const submit = (values, dispatch, props) => new Promise((resolve, reject) => {
+    const errors = validate(values, props);
+
+    if (Object.keys(errors).length !== 0) {
+        reject(new SubmissionError(errors));
     } else {
-        console.log(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
         dispatch(reset('login'));
+        resolve();
     }
-};
+});
 
 const Login = (props) => {
     const {
@@ -33,7 +28,10 @@ const Login = (props) => {
 
     return (
         <div className="login content">
-            <form className="form login-form" onSubmit={handleSubmit(submit)}>
+            <form
+                className="form login-form"
+                onSubmit={handleSubmit(submit)}
+            >
                 <div className="login-form-fields">
                     <div className="form-field">
                         <Field
