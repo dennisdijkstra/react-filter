@@ -9,10 +9,6 @@
             margin-bottom: 24px
         }
 
-        &-field {
-            margin-bottom: 12px;
-        }
-
         button {
             width: 100%;
             padding: 7px;
@@ -22,23 +18,4 @@
             border: none;
         }
     }
-}
-
-input {
-    padding: 5px;
-    font-size: 14px;
-    border: none;
-}
-
-.error {
-    display: block;
-    margin-top: 5px;
-    font-size: 10px;
-    color: #f00;
-}
-
-.form-label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 12px;
 }

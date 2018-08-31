@@ -14,9 +14,9 @@ const Login = (props) => {
 
     return (
         <div className="login content">
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form className="form login-form" onSubmit={handleSubmit}>
                 <div className="login-form-fields">
-                    <div className="login-form-field">
+                    <div className="form-field">
                         <Field
                             name="username"
                             component={RenderField}
@@ -24,7 +24,7 @@ const Login = (props) => {
                             label="Username:"
                         />
                     </div>
-                    <div className="login-form-field">
+                    <div className="form-field">
                         <Field
                             name="password"
                             component={RenderField}
