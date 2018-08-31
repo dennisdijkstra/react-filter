@@ -37,6 +37,11 @@ module.exports = {
         "react/jsx-indent": [
             "error", 4
         ],
+        "jsx-a11y/label-has-associated-control": [ 2, {
+            "labelComponents": ["label"],
+            "labelAttributes": ["htmlFor"],
+            "controlComponents": ["input"]
+        }],
         "max-len": ["warn", 120, {
             "ignoreUrls" : true,
             "ignoreComments" : false,

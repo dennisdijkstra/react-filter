@@ -8,7 +8,7 @@ const CollectionItem = ({ collectionItem }) => {
     const titleRaw = collectionItem.title_raw || 'No title';
 
     return (
-        <Link to={id}>
+        <Link to={`item/${id}`}>
             <div className="exhibition-list-item">
                 <img src={images[0].b.url} className="exhibition-list-item-image" alt={titleRaw} />
                 <p className="exhibition-list-item-title">{titleRaw}</p>

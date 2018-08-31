@@ -1,0 +1,25 @@
+.login {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+
+    &-form {
+        &-fields {
+            margin-bottom: 24px
+        }
+
+        button {
+            width: 100%;
+            padding: 7px;
+            color: #fff;
+            cursor: pointer;
+            background-color: #000;
+            border: none;
+
+            &:disabled {
+                color: #6f00ff
+            }
+        }
+    }
+}

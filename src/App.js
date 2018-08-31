@@ -11,6 +11,7 @@ import store from './datamodel/store';
 import CollectionItemListContainer from './containers/CollectionItemListContainer';
 import CollectionItemDetailContainer from './containers/CollectionItemDetailContainer';
 import Header from './components/Header';
+import Login from './components/Login';
 
 
 const App = () => (
@@ -20,7 +21,8 @@ const App = () => (
                 <Header />
                 <Switch>
                     <Route exact path="/" render={props => <CollectionItemListContainer {...props} />} />
-                    <Route path="/:id" component={CollectionItemDetailContainer} />
+                    <Route path="/item/:id" component={CollectionItemDetailContainer} />
+                    <Route path="/login" component={Login} />
                 </Switch>
             </div>
         </Router>
