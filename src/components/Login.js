@@ -1,20 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
+import {
+    Field,
+    reduxForm,
+    SubmissionError,
+    reset,
+} from 'redux-form';
 import RenderField from './form/RenderField';
-import validate from './form/Validate';
+
+const submit = (values, dispatch) => {
+    if (!values.username) {
+        throw new SubmissionError({
+            username: 'This field is required',
+            _error: 'Login failed!',
+        });
+    } else if (!values.password) {
+        throw new SubmissionError({
+            password: 'This field is required',
+            _error: 'Login failed!',
+        });
+    } else {
+        console.log(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+        dispatch(reset('login'));
+    }
+};
 
 const Login = (props) => {
     const {
         handleSubmit,
-        reset,
-        pristine,
         submitting,
     } = props;
 
     return (
         <div className="login content">
-            <form className="form login-form" onSubmit={handleSubmit}>
+            <form className="form login-form" onSubmit={handleSubmit(submit)}>
                 <div className="login-form-fields">
                     <div className="form-field">
                         <Field
@@ -33,7 +52,7 @@ const Login = (props) => {
                         />
                     </div>
                 </div>
-                <button type="button" disabled={pristine || submitting} onClick={reset}>Login</button>
+                <button type="submit" disabled={submitting}>Login</button>
             </form>
         </div>
     );
@@ -41,12 +60,9 @@ const Login = (props) => {
 
 export default reduxForm({
     form: 'login',
-    validate,
 })(Login);
 
 Login.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
-    pristine: PropTypes.bool.isRequired,
     submitting: PropTypes.bool.isRequired,
-    reset: PropTypes.func.isRequired,
 };

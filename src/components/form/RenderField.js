@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RenderField = ({
+const renderField = ({
     input,
     label,
     type,
@@ -17,4 +17,4 @@ const RenderField = ({
     </div>
 );
 
-export default RenderField;
+export default renderField;

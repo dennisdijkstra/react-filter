@@ -16,6 +16,10 @@
             cursor: pointer;
             background-color: #000;
             border: none;
+
+            &:disabled {
+                color: #6f00ff
+            }
         }
     }
 }
