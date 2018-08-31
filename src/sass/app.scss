@@ -7,7 +7,6 @@
     'node_modules/bulma/sass/grid/columns';
 
 @import
-    'layout/header',
     'layout/main';
 
 @import
@@ -15,4 +14,5 @@
     'components/exhibitionDetail',
     'components/exhibitionList',
     'components/filters',
-    'components/header';
+    'components/header',
+    'components/login';

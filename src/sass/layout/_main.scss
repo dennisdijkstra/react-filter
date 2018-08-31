@@ -24,7 +24,8 @@
     background-color: #f0ffff;
 }
 
-button {
+button,
+input {
     &:focus {
         outline: none;
     }
