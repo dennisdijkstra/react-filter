@@ -12,10 +12,10 @@ const Filters = (props) => {
 
     return (
         <div className="filter">
-            <h2 className="title">Filters</h2>
+            <h2 className="filter-title">Filters</h2>
             <form>
-                <div className="input">
-                    <p className="input-title">Search:</p>
+                <div className="filter-input">
+                    <p className="filter-input-title">Search:</p>
                     <Field
                         name="search"
                         component="input"
@@ -24,8 +24,8 @@ const Filters = (props) => {
                         onChange={filterItems}
                     />
                 </div>
-                <div className="input">
-                    <p className="input-title">Type of object:</p>
+                <div className="filter-input">
+                    <p className="filter-input-title">Type of object:</p>
                     <Field name="select" component="select" value={select} onChange={filterItems}>
                         <option value="all">All</option>
                         {selectCategories.map(category => (

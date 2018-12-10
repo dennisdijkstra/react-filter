@@ -4,8 +4,8 @@ const postcssImport = require('postcss-import');
 
 module.exports = {
     plugins: [
-        postcssNested,
         postcssImport,
+        postcssNested,
         postcssPresetEnv({
             stage: 0,
             features: {
