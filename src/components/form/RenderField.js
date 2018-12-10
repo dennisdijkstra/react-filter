@@ -1,11 +1,6 @@
 import React from 'react';
 
-const renderField = ({
-    input,
-    label,
-    type,
-    meta: { error },
-}) => (
+const renderField = ({ input, label, type, meta: { error } }) => (
     <div>
         <label className="form-label">{label}</label>
         <div>

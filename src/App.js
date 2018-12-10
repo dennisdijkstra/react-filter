@@ -2,17 +2,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import './sass/app.css';
 import 'babel-polyfill';
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import store from './datamodel/store';
 import CollectionItemListContainer from './containers/CollectionItemListContainer';
 import CollectionItemDetailContainer from './containers/CollectionItemDetailContainer';
 import Header from './components/Header';
 import Login from './components/Login';
-
 
 const App = () => (
     <Provider store={store}>

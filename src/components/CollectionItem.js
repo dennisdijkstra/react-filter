@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-
 const CollectionItem = ({ collectionItem }) => {
     const { images, id, year_end: year } = collectionItem;
     const titleRaw = collectionItem.title_raw || 'No title';

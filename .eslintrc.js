@@ -31,6 +31,7 @@ module.exports = {
         "no-return-assign": 0,
         "react/jsx-indent-props": [1, 4],
         "no-unused-expressions": 0,
+        "object-curly-newline": 0,
         "indent": [
             "error", 4
         ],
