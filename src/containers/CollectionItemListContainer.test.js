@@ -19,10 +19,7 @@ let mockFilter;
 
 describe('CollectionItemListContainer', () => {
     it('should render correctly', () => {
-        wrapper = shallow(
-            <CollectionItemListContainer store={store} {...props} />,
-        ).dive();
-
+        wrapper = shallow(<CollectionItemListContainer store={store} {...props} />).dive();
         expect(wrapper).toMatchSnapshot();
     });
 
@@ -46,10 +43,7 @@ describe('CollectionItemListContainer', () => {
         global.fetch.mockResponse(JSON.stringify(
             { objects: [{ id: '18732757', text: 'test', images: ['1', '2'] }] },
         ));
-
-        wrapper = mount(
-            <CollectionItemListContainer store={store} {...props} />,
-        );
+        wrapper = mount(<CollectionItemListContainer store={store} {...props} />);
 
         mockLoadMore = jest.spyOn(wrapper.instance(), 'loadMoreItems').mockImplementation(() => true);
         mockFilter = jest.spyOn(wrapper.instance(), 'filter').mockImplementation(() => true);

@@ -29,7 +29,7 @@ const requestDone = () => (
 
 const fetchData = page => (dispatch) => {
     dispatch(requestItems());
-    return fetch(`https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=491c2e66a84e1faf2e7e906ff6f24579&query=typography&year_acquired=gt1980&has_images=1&per_page=30&page=${page}`)
+    return fetch(`https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=471a50573b4a17c04ea2b0daaaa0f6c0&query=typography&year_acquired=gt1980&has_images=1&per_page=30&page=${page}`)
         .then(items => items.json())
         .then((items) => {
             dispatch(receiveItems(page, items));

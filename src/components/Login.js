@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    Field,
-    reduxForm,
-    SubmissionError,
-    reset,
-} from 'redux-form';
+import { Field, reduxForm, SubmissionError, reset } from 'redux-form';
 import RenderField from './form/RenderField';
 import validate from './form/Validate';
-
 
 class Login extends Component {
     static propTypes = {
@@ -28,10 +22,7 @@ class Login extends Component {
     });
 
     render() {
-        const {
-            handleSubmit,
-            submitting,
-        } = this.props;
+        const { handleSubmit, submitting } = this.props;
 
         return (
             <div className="login content">

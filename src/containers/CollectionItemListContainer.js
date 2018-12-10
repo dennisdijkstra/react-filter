@@ -31,11 +31,7 @@ class CollectionItemListContainer extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            filteredItems: [],
-            initialLoad: true,
-        };
-
+        this.state = { filteredItems: [], initialLoad: true };
         this.page = 1;
     }
 
@@ -62,7 +58,6 @@ class CollectionItemListContainer extends Component {
                 });
             }
         });
-
         setSelect(categories);
     }
 
@@ -87,16 +82,8 @@ class CollectionItemListContainer extends Component {
     }
 
     render() {
-        const {
-            filteredItems,
-            initialLoad,
-        } = this.state;
-
-        const {
-            isFetching,
-            initialValues,
-            selectCategories,
-        } = this.props;
+        const { filteredItems, initialLoad } = this.state;
+        const { isFetching, initialValues, selectCategories } = this.props;
 
         return (
             <div className="container">
@@ -121,10 +108,7 @@ const mapStateToProps = state => ({
     selectCategories: state.selectCategories,
     allCollectionItems: state.allCollectionItems,
     form: state.form,
-    initialValues: {
-        search: '',
-        select: 'all',
-    },
+    initialValues: { search: '', select: 'all' },
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ setSelectCategories, fetchData }, dispatch);

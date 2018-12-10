@@ -3,14 +3,8 @@ import PropTypes from 'prop-types';
 import CollectionItem from './CollectionItem';
 import Spinner from './Spinner';
 
-
 const CollectionItemList = (props) => {
-    const {
-        isFetching,
-        initialLoad,
-        filteredItems,
-        loadMoreItems,
-    } = props;
+    const { isFetching, initialLoad, filteredItems, loadMoreItems } = props;
 
     return (
         <div className="content">
