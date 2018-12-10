@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import './sass/app.css';
-import 'babel-polyfill';
+import '@babel/polyfill';
+import './css/app.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import store from './datamodel/store';
 import CollectionItemListContainer from './containers/CollectionItemListContainer';

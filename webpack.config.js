@@ -1,11 +1,11 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const eslintFriendlyFormatter = require('eslint-friendly-formatter');
-
-const htmlWebpackPlugin = new HtmlWebPackPlugin({
-    template: './src/index.html',
-    filename: './index.html',
-});
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const cssnano = require('cssnano');
+const path = require('path');
 
 module.exports = {
     devServer: {
@@ -17,29 +17,64 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                },
-            },
-            {
-                test: /\.(js|vue)$/,
-                loader: 'eslint-loader',
-                enforce: 'pre',
-                exclude: /node_modules/,
-                options: {
-                    formatter: eslintFriendlyFormatter,
-                },
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env', '@babel/preset-react'],
+                        },
+                    },
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            formatter: eslintFriendlyFormatter,
+                        },
+                    },
+                ],
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                exclude: /node_modules/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                        },
+                    },
+                    'postcss-loader',
+                ],
             },
         ],
     },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+    },
     plugins: [
-        new StyleLintPlugin({
-            files: ['src/**/*.scss'],
+        new HtmlWebPackPlugin({
+            template: './src/index.html',
+            filename: './index.html',
         }),
-        htmlWebpackPlugin,
+        new MiniCssExtractPlugin({
+            filename: 'app.css',
+        }),
+        new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.optimize\.css$/g,
+            cssProcessor: cssnano,
+            cssProcessorPluginOptions: {
+                preset: ['default', { discardComments: { removeAll: true } }],
+            },
+            canPrint: true,
+        }),
+        new StyleLintPlugin({
+            files: ['src/**/*.css'],
+        }),
     ],
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({}),
+            new OptimizeCssAssetsPlugin({}),
+        ],
+    },
 };
