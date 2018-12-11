@@ -9,12 +9,12 @@ const CollectionItem = ({ collectionItem }) => {
 
     return (
         <Link to={`item/${id}`}>
-            <div className={s['exhibition-list-item']}>
-                <img src={images[0].b.url} className={s['exhibition-list-item-image']} alt={titleRaw} />
-                <p className={s['exhibition-list-item-title']}>{titleRaw}</p>
-                <p className={s['exhibition-list-item-year']}>{year}</p>
-                <div className={s['exhibition-list-item-overlay']}>
-                    <p className={s['exhibition-list-item-overlay-text']}>More info</p>
+            <div className={s.content}>
+                <img src={images[0].b.url} className={s.image} alt={titleRaw} />
+                <p className={s.title}>{titleRaw}</p>
+                <p className={s.year}>{year}</p>
+                <div className={s.overlay}>
+                    <p>More info</p>
                 </div>
             </div>
         </Link>
