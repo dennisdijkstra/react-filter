@@ -1,0 +1,24 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: helvetica;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+button,
+input {
+    &:focus {
+        outline: none;
+    }
+}
+
+button {
+    font-size: 14px;
+}

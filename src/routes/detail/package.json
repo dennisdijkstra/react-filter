@@ -1,0 +1,6 @@
+{
+  "name": "CollectionItemDetail",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./CollectionItemDetail.js"
+}

@@ -1,10 +1,10 @@
+const postcssReset = require('postcss-css-reset');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssNested = require('postcss-nested');
-const postcssImport = require('postcss-import');
 
 module.exports = {
     plugins: [
-        postcssImport,
+        postcssReset,
         postcssNested,
         postcssPresetEnv({
             stage: 0,
