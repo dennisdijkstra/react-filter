@@ -1,15 +1,15 @@
-.header {
+.content {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 100px;
     padding: 0 25px;
+}
 
-    &-title {
-        font-size: 26px;
-    }
+.title {
+    font-size: 26px;
+}
 
-    &-link {
-        font-size: 14px;
-    }
+.link {
+    font-size: 14px;
 }

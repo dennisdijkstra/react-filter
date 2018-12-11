@@ -6,9 +6,9 @@ import setSelectCategories from '../../actions/collectionItem';
 import { fetchData } from '../../actions/filter';
 import CollectionItems from '../../components/molecules/CollectionItems';
 import Filters from '../../components/molecules/Filters';
-import s from './Home.css';
+import s from './Collection.css';
 
-class Home extends Component {
+class Collection extends Component {
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
         setSelectCategories: PropTypes.func.isRequired,
@@ -97,6 +97,7 @@ class Home extends Component {
                     filteredItems={filteredItems}
                     initialLoad={initialLoad}
                     isFetching={isFetching}
+                    loadMoreItems={this.loadMoreItems}
                 />
             </div>
         );
@@ -116,4 +117,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({ setSelectCategories,
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Home);
+)(Collection);
