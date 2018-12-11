@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    background-color: #f0ffff;
+}
+
+.items {
+    display: grid;
+    grid-gap: 72px 24px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    width: 100%;
+}
+
+.more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px 0;
+}
+
+.button {
+    display: block;
+    width: 150px;
+    height: 35px;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+}
+
+.spinner {
+    position: absolute;
+
+    & > div {
+        width: 10px;
+        height: 10px;
+    }
+}
