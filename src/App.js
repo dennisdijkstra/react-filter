@@ -1,22 +1,22 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import '@babel/polyfill';
-import './css/app.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import store from './datamodel/store';
-import CollectionItemListContainer from './containers/CollectionItemListContainer';
-import CollectionItemDetailContainer from './containers/CollectionItemDetailContainer';
-import Header from './components/Header';
-import Login from './components/Login';
+import Header from './components/molecules/Header';
+import Login from './routes/login';
+import CollectionItemList from './routes/list/CollectionItemList';
+import CollectionItemDetail from './routes/detail/CollectionItemDetail';
+import store from './store';
+import s from './App.css';
 
 const App = () => (
     <Provider store={store}>
         <Router>
-            <div className="app">
+            <div className={s.app}>
                 <Header />
                 <Switch>
-                    <Route exact path="/" render={props => <CollectionItemListContainer {...props} />} />
-                    <Route path="/item/:id" component={CollectionItemDetailContainer} />
+                    <Route exact path="/" render={props => <CollectionItemList {...props} />} />
+                    <Route path="/item/:id" component={CollectionItemDetail} />
                     <Route path="/login" component={Login} />
                 </Switch>
             </div>

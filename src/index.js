@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import store from './datamodel/store';
+import store from './store';
 import App from './App';
 
 const render = () => {
