@@ -3,9 +3,9 @@ import { shallow, mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import * as actions from '../../actions/collectionItem';
-import * as types from '../../constants/action-types';
-import CollectionItemList from '../../components/CollectionItemList';
+import * as actions from '../../../actions/collectionItem';
+import * as types from '../../../constants/action-types';
+import CollectionItemList from './CollectionItems';
 
 configure({ adapter: new Adapter() });
 

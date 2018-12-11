@@ -1,23 +1,23 @@
-.filter {
+.content {
     width: 200px;
     min-height: 100%;
     padding: 30px;
     color: #fff;
     background-color: #000;
+}
 
-    &-input {
-        margin-bottom: 24px;
-    }
+.input {
+    margin-bottom: 24px;
+}
 
-    &-title {
-        margin-bottom: 24px;
-        font-size: 18px;
-        font-weight: 400;
-    }
+.title {
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: 400;
+}
 
-    &-input-title {
-        margin-bottom: 8px;
-        font-size: 14px;
-        font-weight: 100;
-    }
+.subtitle {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 100;
 }

@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import s from './Header.css';
 
 const Header = () => (
-    <div className={s.header}>
+    <div className={s.content}>
         <Link to="/">
-            <h1 className={s['header-title']}>Cooper Hewitt Typography Objects</h1>
+            <h1 className={s.title}>Cooper Hewitt Typography Objects</h1>
         </Link>
         <Link to="/login">
-            <p className={s['header-link']}>Login</p>
+            <p className={s.link}>Login</p>
         </Link>
     </div>
 );

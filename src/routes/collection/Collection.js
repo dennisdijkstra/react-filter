@@ -4,12 +4,11 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import setSelectCategories from '../../actions/collectionItem';
 import { fetchData } from '../../actions/filter';
-import CollectionItem from '../../components/atoms/CollectionItem';
-import Spinner from '../../components/atoms/Spinner';
+import CollectionItems from '../../components/molecules/CollectionItems';
 import Filters from '../../components/molecules/Filters';
-import s from './CollectionItemList.css';
+import s from './Collection.css';
 
-class CollectionItemList extends Component {
+class Collection extends Component {
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
         setSelectCategories: PropTypes.func.isRequired,
@@ -94,26 +93,12 @@ class CollectionItemList extends Component {
                     filter={this.filter}
                     selectCategories={selectCategories}
                 />
-                <div className={s.content}>
-                    <div className={s['exhibition-list-items']}>
-                        { isFetching && initialLoad ? <Spinner /> : null }
-                        {filteredItems.map(collectionItem => (
-                            <CollectionItem key={collectionItem.id} collectionItem={collectionItem} />
-                        ))}
-                    </div>
-                    { !initialLoad ? (
-                        <div className={s['exhibition-list-load-more']}>
-                            <button
-                                className={s['exhibition-list-load-more-button']}
-                                onClick={this.loadMoreItems}
-                                type="button"
-                            >
-                                { isFetching ? '' : 'Load more' }
-                            </button>
-                            { isFetching && !initialLoad ? <Spinner /> : null }
-                        </div>
-                    ) : (null)}
-                </div>
+                <CollectionItems
+                    filteredItems={filteredItems}
+                    initialLoad={initialLoad}
+                    isFetching={isFetching}
+                    loadMoreItems={this.loadMoreItems}
+                />
             </div>
         );
     }
@@ -132,4 +117,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({ setSelectCategories,
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(CollectionItemList);
+)(Collection);

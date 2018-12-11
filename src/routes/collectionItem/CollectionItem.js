@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import s from './CollectionItemDetail.css';
+import s from './CollectionItem.css';
 
-class CollectionItemDetail extends Component {
+class CollectionItem extends Component {
     static propTypes = {
         item: PropTypes.shape({
             title: PropTypes.string.isRequired,
@@ -29,15 +29,15 @@ class CollectionItemDetail extends Component {
         const { item } = this.state;
 
         return (
-            <div className="container">
+            <div className={s.container}>
                 {item ? (
-                    <div className="content">
+                    <div className={s.content}>
                         <Link to="/">
-                            <p className={s['exhibition-detail-back']}>Back</p>
+                            <p className={s.back}>Back</p>
                         </Link>
-                        <p className={s['exhibition-detail-title']}>{item.title}</p>
-                        <img src={item.images[0].z.url} className={s['exhibition-detail-image']} alt={item.title} />
-                        <p className={s['exhibition-detail-text']}>Medium: {item.medium}</p>
+                        <p className={s.title}>{item.title}</p>
+                        <img src={item.images[0].z.url} className={s.image} alt={item.title} />
+                        <p className={s.text}>Medium: {item.medium}</p>
                     </div>
                 ) : (null) }
             </div>
@@ -45,4 +45,4 @@ class CollectionItemDetail extends Component {
     }
 }
 
-export default CollectionItemDetail;
+export default CollectionItem;

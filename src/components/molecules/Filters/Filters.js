@@ -12,11 +12,11 @@ const Filters = (props) => {
     };
 
     return (
-        <div className={s.filter}>
-            <h2 className={s['filter-title']}>Filters</h2>
+        <div className={s.content}>
+            <h2 className={s.title}>Filters</h2>
             <form>
-                <div className={s['filter-input']}>
-                    <p className={s['filter-input-title']}>Search:</p>
+                <div className={s.input}>
+                    <p className={s.subtitle}>Search:</p>
                     <Field
                         name="search"
                         component="input"
@@ -25,8 +25,8 @@ const Filters = (props) => {
                         onChange={filterItems}
                     />
                 </div>
-                <div className={s['filter-input']}>
-                    <p className={s['filter-input-title']}>Type of object:</p>
+                <div className={s.input}>
+                    <p className={s.subtitle}>Type of object:</p>
                     <Field name="select" component="select" value={select} onChange={filterItems}>
                         <option value="all">All</option>
                         {selectCategories.map(category => (

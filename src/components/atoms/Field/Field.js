@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './Form.css';
 
-const renderField = ({ input, label, type, meta: { error } }) => (
+const Field = ({ input, label, type, meta: { error } }) => (
     <div>
-        <label htmlFor={type} className={s['form-label']}>{label}
+        <label htmlFor={type} className={s.label}>{label}
             <div>
                 <input {...input} type={type} id={type} />
                 {error
@@ -14,4 +14,4 @@ const renderField = ({ input, label, type, meta: { error } }) => (
     </div>
 );
 
-export default renderField;
+export default Field;

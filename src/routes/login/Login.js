@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, SubmissionError, reset } from 'redux-form';
-import RenderField from '../../components/atoms/RenderField';
-import validate from '../../components/atoms/RenderField/Validate';
+import FormField from '../../components/atoms/Field';
+import validate from '../../components/atoms/Field/Validate';
 import s from './Login.css';
 
 class Login extends Component {
@@ -26,24 +26,24 @@ class Login extends Component {
         const { handleSubmit, submitting } = this.props;
 
         return (
-            <div className={s.login}>
+            <div className={s.content}>
                 <form
-                    className={s['login-form']}
+                    className={s.form}
                     onSubmit={handleSubmit(this.submit)}
                 >
-                    <div className={s['login-form-fields']}>
-                        <div className={s['login-form-field']}>
+                    <div className={s.fields}>
+                        <div className={s.field}>
                             <Field
                                 name="username"
-                                component={RenderField}
+                                component={FormField}
                                 type="text"
                                 label="Username:"
                             />
                         </div>
-                        <div className={s['login-form-field']}>
+                        <div className={s.field}>
                             <Field
                                 name="password"
-                                component={RenderField}
+                                component={FormField}
                                 type="password"
                                 label="Password:"
                             />
