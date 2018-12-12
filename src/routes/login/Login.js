@@ -3,30 +3,35 @@ import { Formik, Form, Field } from 'formik';
 import s from './Login.css';
 
 class Login extends Component {
-    submit = (values, { setSubmitting }) => {
+    submit = (values, { setSubmitting, setStatus }) => {
         if (values) {
             console.log(values);
             setSubmitting(false);
+            setStatus({ submitSucceeded: true });
         }
     };
 
     render() {
         return (
             <div className={s.content}>
-                <Formik initialValues={{ username: '', password: '' }} onSubmit={this.submit}>
-                    {({ dirty, isSubmitting, submitSucceeded }) => (
-                        <Form>
-                            <div className={s.fields}>
-                                <div className={s.field}>
-                                    <Field type="text" name="username" placeholder="username" />
+                <Formik initialValues={{ email: '', password: '' }} onSubmit={this.submit}>
+                    {({ dirty, isSubmitting }) => {
+                        // const submitSucceeded = status.submitSucceeded;
+
+                        return (
+                            <Form>
+                                <div className={s.fields}>
+                                    <div className={s.field}>
+                                        <Field type="text" name="email" placeholder="Email" />
+                                    </div>
+                                    <div className={s.field}>
+                                        <Field type="password" name="password" placeholder="Password" />
+                                    </div>
                                 </div>
-                                <div className={s.field}>
-                                    <Field type="password" name="password" />
-                                </div>
-                            </div>
-                            <button type="submit" disabled={!dirty || isSubmitting || submitSucceeded}>Login</button>
-                        </Form>
-                    )}
+                                <button type="submit" disabled={!dirty || isSubmitting}>Login</button>
+                            </Form>
+                        );
+                    }}
                 </Formik>
             </div>
         );
