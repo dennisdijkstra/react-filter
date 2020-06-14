@@ -17,13 +17,15 @@ const CollectionItemList = (props) => {
             </div>
             { !initialLoad ? (
                 <div className={s.more}>
-                    <button
-                        className={s.button}
-                        onClick={loadMoreItems}
-                        type="button"
-                    >
-                        { isFetching ? '' : 'Load more' }
-                    </button>
+                    { isFetching ? null : (
+                        <button
+                            className={s.button}
+                            onClick={loadMoreItems}
+                            type="button"
+                        >
+                            { isFetching ? '' : 'Load more' }
+                        </button>
+                    )}
                     { isFetching && !initialLoad ? <Spinner /> : null }
                 </div>
             ) : (null)}
