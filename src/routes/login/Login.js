@@ -15,23 +15,19 @@ class Login extends Component {
         return (
             <div className={s.content}>
                 <Formik initialValues={{ email: '', password: '' }} onSubmit={this.submit}>
-                    {({ dirty, isSubmitting }) => {
-                        // const submitSucceeded = status.submitSucceeded;
-
-                        return (
-                            <Form>
-                                <div className={s.fields}>
-                                    <div className={s.field}>
-                                        <Field type="text" name="email" placeholder="Email" />
-                                    </div>
-                                    <div className={s.field}>
-                                        <Field type="password" name="password" placeholder="Password" />
-                                    </div>
+                    {({ dirty, isSubmitting }) => (
+                        <Form>
+                            <div className={s.fields}>
+                                <div className={s.field}>
+                                    <Field type="text" name="email" placeholder="Email" />
                                 </div>
-                                <button type="submit" disabled={!dirty || isSubmitting}>Login</button>
-                            </Form>
-                        );
-                    }}
+                                <div className={s.field}>
+                                    <Field type="password" name="password" placeholder="Password" />
+                                </div>
+                            </div>
+                            <button type="submit" disabled={!dirty || isSubmitting}>Login</button>
+                        </Form>
+                    )}
                 </Formik>
             </div>
         );
